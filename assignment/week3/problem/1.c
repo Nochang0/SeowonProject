@@ -44,10 +44,10 @@ int main() {
 
                 attempts++;
 
-                if (guessNumber < targetNumber) {
+                if (guessNumber > targetNumber) {
                     printf("낮음! ");
                 }
-                else if (guessNumber > targetNumber) {
+                else if (guessNumber < targetNumber) {
                     printf("높음!");
                 }
                 else {

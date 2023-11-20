@@ -7,25 +7,24 @@
 
 int main(void)
 {
-    // 5개의 정수를 저장할 배열 선언
-    int num[5];
-    // 반복문에서 사용할 변수 선언
-    int count; 
+    
+    int num[5]={0};         
+    
+    int count;              
 
-    // 사용자에게 정수를 입력하라는 안내 메시지 출력
-    printf("5개의 정수를 입력하세요.\n"); 
-
-    // 5번 반복하여 정수를 입력받아 배열에 저장
-    for (count = 0; count < 5; count++)
+    
+    printf("5개의 정수를 입력하세요.\n");           
+    
+    for (count = 0; count < 5; count++)           
     {
         scanf("%d", &num[count]);
     } 
 
-    // 배열을 역순으로 출력
-    for (count = 4; count >= 0; count--)
+   
+    for (count = 4; count >= 0; count--)           
     {
-        // 각 숫자 사이에 공백 추가하여 출력
-        printf("%d ", num[count]);
+        
+        printf("%d ", num[count]);                 
     } 
     return 0;
 }

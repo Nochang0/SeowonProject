@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <unistd.h>
+
 
 char* getDate() {
     char date[30];
@@ -11,6 +13,24 @@ char* getDate() {
     // 현재 날짜를 yyyy-mm-dd 형식으로 문자열에 저장
     sprintf(date, "%04d-%02d-%02d", tm_info.tm_year + 1900, tm_info.tm_mon + 1, tm_info.tm_mday);
     return date;
+}
+
+
+void LoadSpin(int file_size) {
+    int download_speed = 10;
+    float total_time = (float)file_size / download_speed + 1;
+
+    for (int i = 0; i < (int)total_time; i++) {
+        int current_size = i * download_speed;
+        float ratio = (float)current_size / file_size;
+        float percent = ratio * 100;
+
+        const char* cursor = "|/-\\";
+        printf("\r[%.1f%%] Loading...%c", percent, cursor[i % 4]);
+        fflush(stdout);
+        usleep(100000);
+    }
+	printf("\rSuccess!\r");
 }
 
 

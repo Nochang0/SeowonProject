@@ -9,16 +9,20 @@
 #define INIT_VALUE 0  // 초기화 값
 
 int main() {
-    int arr[SIZE] = { INIT_VALUE, INIT_VALUE, INIT_VALUE, INIT_VALUE, INIT_VALUE,
-                     INIT_VALUE, INIT_VALUE, INIT_VALUE, INIT_VALUE, INIT_VALUE };
-    int max = arr[0];
-    int min = arr[0];
+    int arr[SIZE];
+    int max, min;
 
     // 배열의 값 입력
     printf("정수형 배열의 값을 입력하세요:\n");
     for (int i = 0; i < SIZE; i++) {
         printf("arr[%d]: ", i);
         scanf("%d", &arr[i]);
+
+        // 초기값 설정
+        if (i == 0) {
+            max = arr[0];
+            min = arr[0];
+        }
     }
 
     // 최댓값과 최솟값 찾기
@@ -37,6 +41,5 @@ int main() {
 
     return 0;
 }
-
 
 // cd /workspace/SeowonCProject/assignment/week3/creation/ && gcc ./202311431.c -o /tmp/a.out -lm && clear && /tmp/a.out
