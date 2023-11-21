@@ -98,14 +98,14 @@
         
 | 함수(Function) | 역할(Role) | 인수(Argument) | 출력 값(Return Value) |
 |:--------------:|:---------:|:-------------:|:--------------------:|
-| int updatelistId(char* listId) | 내역 고유번호를 업데이트 및 출력합니다. | 내역 고유번호(char) | 수정된 수입내역(char) |
-| char* addIncomeList(char* jsonData, char* HistoryData) | 수입 내역을 추가합니다. | 수입내역(char), 새로운 추가내역(char) | 수정된 수입내역(char) |
-| char* addSpendList(char* jsonData, char* HistoryData) | 지출 내역을 추가합니다. | 지출내역(char), 새로운 추가내역(char) | 수정된 지출내역(char) |
-| int setSpendLimit(char* jsonData, char* spendPrice) | 지출 한도를 설정합니다. | 지출내역(char), 지출 한도액(int) | 지출 한도액 - 총지출액(int) |
-| int getSpendLimit(char* jsonData) | 지출 내역 현황을 출력합니다. | 지출내역(char), 지출 예약 내역(char) | 지출 한도액 - 총지출액(int) |
-| char* setSpendPromise(char* jsonData, char* HistoryData) | 지출 예약 내역을 추가합니다. | 수입내역(char), 새로운 내역(char) | 수정된 지출 예약 내역(char) |
-| char* findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 내역을 날짜로 검색합니다. | 지출내역(char), 날짜(char) | 일치 내역들(char) |
-| char* findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 내역을 카테고리로 검색합니다. | 지출내역(char), 카테고리(char) | 일치 내역들(char) |
+| int updatelistId(char* listId) | 내역 고유번호를 업데이트 및 출력 | 내역 고유번호(char) | 수정된 수입내역(char) |
+| char* addIncomeList(char* jsonData, char* HistoryData) | 수입 내역을 추가 | 수입내역(char), 새로운 추가내역(char) | 수정된 수입내역(char) |
+| char* addSpendList(char* jsonData, char* HistoryData) | 지출 내역을 추가 | 지출내역(char), 새로운 추가내역(char) | 수정된 지출내역(char) |
+| int setSpendLimit(char* jsonData, char* spendPrice) | 지출 한도를 설정 | 지출내역(char), 지출 한도액(int) | 지출 한도액 - 총지출액(int) |
+| int getSpendLimit(char* jsonData) | 지출 내역 현황을 출력 | 지출내역(char), 지출 예약 내역(char) | 지출 한도액 - 총지출액(int) |
+| char* setSpendPromise(char* jsonData, char* HistoryData) | 지출 예약 내역을 추가 | 수입내역(char), 새로운 내역(char) | 수정된 지출 예약 내역(char) |
+| char* findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 내역을 날짜로 검색 | 지출내역(char), 날짜(char) | 일치 내역들(char) |
+| char* findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 내역을 카테고리로 검색 | 지출내역(char), 카테고리(char) | 일치 내역들(char) |
 
 * **fs.h**
         

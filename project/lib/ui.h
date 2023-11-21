@@ -37,7 +37,7 @@ void Splash_Screen(void) {
 	printf("╠════════════════════════╩══════════════════════════╣\n");
 	printf("║ Github: " LIGHT_GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
-	LoadSpin(100);
+	LoadSpin(300);
 }
 
 void mainMenuScene(void) {
@@ -45,8 +45,18 @@ void mainMenuScene(void) {
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n\n");
-	printf("        3. 📝수입 관리        2. 📑지출 관리         \n\n");
-	printf("        1. 🔍내역 검색        q. ⛔" LIGHT_RED "나가기\n" WHITE);
+	printf("        1. 📝수입 관리        2. 📑지출 관리         \n\n");
+	printf("        3. 🔍내역 검색        q. ⛔" LIGHT_RED "나가기\n" WHITE);
+    printf("\n╚═══════════════════════════════════════════════════╝\n");
+}
+
+void incomeMenuScene(void) {
+    printf("\033[2J\033[H");						// 프롬프트 Clear
+	printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n\n");
+	printf("        1. 📝수입 관리        2. 📑지출 관리         \n\n");
+	printf("        3. 🔍내역 검색        q. ⛔" LIGHT_RED "나가기\n" WHITE);
     printf("\n╚═══════════════════════════════════════════════════╝\n");
 }
 
