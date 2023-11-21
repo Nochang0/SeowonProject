@@ -16,7 +16,6 @@
 // }
 
 
-
 void LoadSpin(int file_size) {
     int download_speed = 10;
     float total_time = (float)file_size / download_speed + 1;

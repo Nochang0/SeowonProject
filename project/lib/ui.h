@@ -23,6 +23,7 @@ void Splash_Screen();
 void menuScene();
 
 
+// 스플래시 이미지
 void Splash_Screen(void) {
     printf("\033[2J\033[H");						// 프롬프트 Clear
 	printf("╔═══════════════════════════════════════════════════╗\n");
@@ -37,26 +38,43 @@ void Splash_Screen(void) {
 	printf("╠════════════════════════╩══════════════════════════╣\n");
 	printf("║ Github: " LIGHT_GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
-	LoadSpin(300);
+	LoadSpin(50);
 }
 
-void mainMenuScene(void) {
-    printf("\033[2J\033[H");						// 프롬프트 Clear
+// 메인 메뉴
+char* mainMenuScene(void) {
+    char moveNum[5];
+    printf(WHITE "\033[2J\033[H");						// 프롬프트 Clear
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n\n");
 	printf("        1. 📝수입 관리        2. 📑지출 관리         \n\n");
-	printf("        3. 🔍내역 검색        q. ⛔" LIGHT_RED "나가기\n" WHITE);
+	printf("        3. 🔍내역 검색        " LIGHT_RED "q. ⛔종료하기\n" WHITE);
+    printf("\n╚═══════════════════════════════════════════════════╝\n");
+    
+    printf("메뉴 선택: " LIGHT_GREEN);
+    scanf("%s", moveNum);
+    return moveNum;
+}
+
+// 수입 메뉴
+void incomeMenuScene(void) {
+    printf(WHITE "\033[2J\033[H");						// 프롬프트 Clear
+	printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n\n");
+	printf("    1. 📝수입목록 추가        2. 📑수입목록 보기         \n\n");
+	printf("    " YELLOW "3. 🚪뒤로가기" LIGHT_RED "              q. ⛔종료하기\n" WHITE);
     printf("\n╚═══════════════════════════════════════════════════╝\n");
 }
 
-void incomeMenuScene(void) {
-    printf("\033[2J\033[H");						// 프롬프트 Clear
+// 종료 화면
+void ExitScene(void) {
+    printf(WHITE "\033[2J\033[H");						// 프롬프트 Clear
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n\n");
-	printf("        1. 📝수입 관리        2. 📑지출 관리         \n\n");
-	printf("        3. 🔍내역 검색        q. ⛔" LIGHT_RED "나가기\n" WHITE);
+	printf("║                    Bye Bye                      ║\n");
     printf("\n╚═══════════════════════════════════════════════════╝\n");
 }
 

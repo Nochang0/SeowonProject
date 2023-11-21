@@ -3,11 +3,11 @@
 
 int main() {
     int i;
-    char text[] = "Hello, World!"; // 출력할 텍스트
+    char text[] = "Bye Bye"; // 출력할 텍스트
     int text_length = sizeof(text) - 1; // 텍스트의 길이
 
-    for (i = 0; ; i++) {
-        int color_value = (i / 2) % 2; // 10번마다 색 변경
+    for (i = 0; i < 2; i++) {
+        int color_value = (i / 1) % 2; // 10번마다 색 변경
         int color_code = color_value ? 30 : 37; // 검은색 또는 흰색 선택
 
         printf("\033[%dm", color_code); // 색상 설정
@@ -22,7 +22,6 @@ int main() {
 
         usleep(500000); // 0.5초 대기
     }
-
     return 0;
 }
 
