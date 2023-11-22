@@ -84,7 +84,7 @@
     * **N주차 프로그래밍 과제:** `cd ./assignment/week{N}`
     * **N주차 창작 과제:** `cd ./assignment/week{N}/creation/`
     * **N주차 프로그램 팀별과제:** `cd ./assignment/week{N}/problem/`
-    * **파일 실행 코드 (FILE.c):** `gcc ./FILE.c -o /tmp/a.out -lm && clear && /tmp/a.out`
+    * **파일 실행 명령어 (FILE.c):** `gcc ./FILE.c -o /tmp/a.out -lm && clear && /tmp/a.out`
     
 ## 📝 가계부 프로그램 개발 프로젝트
 
