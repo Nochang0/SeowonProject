@@ -1,0 +1,1 @@
+gitignore 파일 제외 : git rm --cached test.txt
