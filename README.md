@@ -79,7 +79,7 @@
         ┣ 📜 LICENSE
         ┣ 📜 README.md
         ┗ 📜 requirements.txt
- 	```
+ 		```
     * **팀 프로젝트 파일:** `cd ./project/`
     * **N주차 프로그래밍 과제:** `cd ./assignment/week{N}`
     * **N주차 창작 과제:** `cd ./assignment/week{N}/creation/`
