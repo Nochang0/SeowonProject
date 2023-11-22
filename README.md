@@ -55,7 +55,7 @@
 * **파일 경로**
     * **파일 트리**
     	```
-        📦 프로젝트
+        📦 5조 팀 프로젝트
         ┣ 📂 assignment
         ┃  ┗ 📂 Week1 ~ 4
 		┃		┣ 📂 problem
@@ -75,9 +75,9 @@
 		┃	┃	┣ 📄 spend.json (지출목록 저장 파일)
 		┃	┃	┣ 📄 income.json (수입목록 저장 파일)
 		┃	┃	┗ 📄 spendPromise.json (예약 지출목록 저장 파일)
-		┃	┗ 📜 main.c (실행 파일)
-        ┣ 📜 LICENSE
-        ┗ 📜 README.md
+		┃	┗ 💻 main.c (실행 파일)
+        ┣ 📄 LICENSE
+        ┗ 📄 README.md
  		```
     * **팀 프로젝트 파일:** `cd ./project/`
     * **N주차 프로그래밍 과제:** `cd ./assignment/week{N}`
