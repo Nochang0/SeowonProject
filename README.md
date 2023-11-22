@@ -53,24 +53,37 @@
 * **프로젝트 역할**
     
 * **파일 경로**
-    * **팀 프로젝트 파일:** `cd ./project/`
-    * **N주차 프로그래밍 과제:** `cd ./assignment/`
-    * **N주차 창작 과제:** `cd ./assignment/week1/creation/`
-    * **N주차 프로그램 팀별과제:** `cd ./assignment/week1/problem/`
-    * 파일 트리
+    * **파일 트리**
     	```
-    	📦 프로젝트
-         ┣ 📂 src
-         ┃  ┣ 📂 utils
-         ┃  ┃  ┣ 📜 helper.py
-         ┃  ┃  ┗ 📜 constants.py
-         ┃  ┗ 📜 main.py
-         ┣ 📂 docs
-         ┃  ┗ 📜 documentation.md
-         ┣ 📜 LICENSE
-         ┣ 📜 README.md
-         ┗ 📜 requirements.txt
+        📦 프로젝트
+        ┣ 📂 assignment
+        ┃  ┗ 📂 Week1 ~ 4
+		┃		┣ 📂 problem
+		┃			┗ 📜 1 ~ 6.c
+		┃		┗ 📂 creation
+		┃			┗ 📜 학번.c    
+        ┣ 📂 project
+        ┃	┣ 📂 lib
+		┃	┃	┣ 📜 fs.h
+		┃	┃	┣ 📜 ui.h
+		┃	┃	┣ 📜 util.h
+		┃	┃	┣ 📜 prompt.h
+		┃	┃	┗ 📜 data_manager.h
+        ┃	┣ 📂 db
+		┃	┃	┣ 📄 uniqueNum.txt
+		┃	┃	┣ 📄 spendLimit.txt
+		┃	┃	┣ 📄 spend.json
+		┃	┃	┣ 📄 income.json
+		┃	┃	┗ 📄 spendPromise.json
+		┃	┗ 📜 main.c
+        ┣ 📜 LICENSE
+        ┣ 📜 README.md
+        ┗ 📜 requirements.txt
  	```
+    * **팀 프로젝트 파일:** `cd ./project/`
+    * **N주차 프로그래밍 과제:** `cd ./assignment/week{N}`
+    * **N주차 창작 과제:** `cd ./assignment/week{N}/creation/`
+    * **N주차 프로그램 팀별과제:** `cd ./assignment/week{N}/problem/`
     * **파일 실행 코드 (FILE.c):** `gcc ./FILE.c -o /tmp/a.out -lm && clear && /tmp/a.out`
     
 ## 📝 가계부 프로그램 개발 프로젝트
