@@ -77,8 +77,7 @@
 		┃	┃	┗ 📄 spendPromise.json (예약 지출목록 저장 파일)
 		┃	┗ 📜 main.c (실행 파일)
         ┣ 📜 LICENSE
-        ┣ 📜 README.md
-        ┗ 📜 requirements.txt
+        ┗ 📜 README.md
  		```
     * **팀 프로젝트 파일:** `cd ./project/`
     * **N주차 프로그래밍 과제:** `cd ./assignment/week{N}`
