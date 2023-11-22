@@ -57,6 +57,20 @@
     * **N주차 프로그래밍 과제:** `cd ./assignment/`
     * **N주차 창작 과제:** `cd ./assignment/week1/creation/`
     * **N주차 프로그램 팀별과제:** `cd ./assignment/week1/problem/`
+    * 파일 트리
+    	```
+    	📦 프로젝트
+         ┣ 📂 src
+         ┃  ┣ 📂 utils
+         ┃  ┃  ┣ 📜 helper.py
+         ┃  ┃  ┗ 📜 constants.py
+         ┃  ┗ 📜 main.py
+         ┣ 📂 docs
+         ┃  ┗ 📜 documentation.md
+         ┣ 📜 LICENSE
+         ┣ 📜 README.md
+         ┗ 📜 requirements.txt
+ 	```
     * **파일 실행 코드 (FILE.c):** `gcc ./FILE.c -o /tmp/a.out -lm && clear && /tmp/a.out`
     
 ## 📝 가계부 프로그램 개발 프로젝트
