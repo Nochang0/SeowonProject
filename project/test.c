@@ -14,8 +14,9 @@ int main(void) {
     // char *result = loadFile("./db/text.txt");
 	// printf("%s\n", result);
 	Splash_Screen();
-	mainMenuScene();
-    getmainMenu();
+	int move = mainMenuScene();
+    printf("%d\n", move[0]);
+    // inputBar(move);
     return 0;
 }
 

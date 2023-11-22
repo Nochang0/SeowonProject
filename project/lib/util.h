@@ -5,6 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#define WHITE   "\x1b[0m"
 
 // char* getDate(void) {
 //     char Date[30];
@@ -20,7 +21,9 @@ void gotoxy(int x, int y) {
     printf("\033[%d;%df", y, x);
 }
 
-void LoadSpin(int file_size) {
+
+void LoadSpin(int file_size, char* plusText) {
+    printf(WHITE);
     int download_speed = 10;
     float total_time = (float)file_size / download_speed + 1;
 
@@ -30,12 +33,11 @@ void LoadSpin(int file_size) {
         float percent = ratio * 100;
 
         const char* cursor = "|/-\\";
-        printf("\r[%.1f%%] Loading... %c", percent, cursor[i % 4]);
+        printf("\r%s[%.1f%%] Loading... %c", plusText, percent, cursor[i % 4]);
         fflush(stdout);
         usleep(100000);
     }
 	printf("\rSuccess!\r");
 }
-
 
 #endif // UTIL_H

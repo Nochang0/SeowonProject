@@ -26,18 +26,22 @@ void showSpendList();
 
 
 
-void getmainMenu() {
+char* inputBar(int menuInfo[]) {
+    char menuNum[5];		// 이동 기호
+    printf("%d\n", menuInfo[0]);
+    printf(WHITE);
+    
 	printf("╔═══════════════════════════════════════════════════╗\n\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
-    gotoxy(1, 11);
-    printf("║ 입력:                                             ║");
     
+    gotoxy(1, menuInfo[0]);
+    printf("║ 입력:                                             ║" LIGHT_GREEN);
+    gotoxy(9, menuInfo[0]);
+    scanf("%s", menuNum);
+    gotoxy(10, menuInfo[0]);
+    LoadSpin(100, "║ ");
+    
+    return menuNum;
 }
 
-
-/*
-    printf("메뉴 선택: " LIGHT_GREEN);
-    scanf("%s", moveNum);
-    return moveNum;
-*/
 #endif // PROMPT_H
