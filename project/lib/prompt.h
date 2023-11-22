@@ -2,18 +2,23 @@
 #define PROMPT_H
 
 
-#define COLOR_RED     		"\x1b[31m"
-#define COLOR_LIGHT_RED     "\033[1;31m"
-#define COLOR_GREEN   		"\x1b[32m"
-#define COLOR_LIGHT_GREEN 	"\033[1;32m"
-#define COLOR_YELLOW  		"\x1b[33m"
-#define COLOR_BLUE    		"\x1b[34m"
-#define COLOR_MAGENTA 		"\x1b[35m"
-#define COLOR_CYAN    		"\x1b[36m"
-#define COLOR_WHITE   		"\x1b[0m"
+#define RED     		"\x1b[31m"
+#define LIGHT_RED     	"\033[1;31m"
+#define GREEN   		"\x1b[32m"
+#define LIGHT_GREEN 	"\033[1;32m"
+#define YELLOW  		"\x1b[33m"
+#define BLUE    		"\x1b[34m"
+#define LIGHT_BLUE		"\033[94m"
+#define MAGENTA 		"\x1b[35m"
+#define CYAN    		"\x1b[36m"
+#define LIGHT_CYAN		"\033[96m"
+#define WHITE   		"\x1b[0m"
 
 // 기본 라이브러리
 #include <stdio.h>
+
+// 커스텀 라이브러리
+#include "../lib/util.h"
 
 
 void showIncomeList();
@@ -21,13 +26,18 @@ void showSpendList();
 
 
 
-void menuScene() {
-    printf("\033[2J\033[H");						// 프롬프트 Clear
-	printf("╔═══════════════════════════════════════════════════╗\n");
-	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
-    printf("╠═══════════════════════════════════════════════════╣\n\n");
+void getmainMenu() {
+	printf("╔═══════════════════════════════════════════════════╗\n\n");
+    printf("╚═══════════════════════════════════════════════════╝\n");
+    gotoxy(1, 11);
+    printf("║입력:                                              ║");
     
 }
 
 
+/*
+    printf("메뉴 선택: " LIGHT_GREEN);
+    scanf("%s", moveNum);
+    return moveNum;
+*/
 #endif // PROMPT_H

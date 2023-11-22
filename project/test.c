@@ -7,12 +7,15 @@
 // 커스텀 라이브러리
 #include "./lib/fs.h"
 #include "./lib/ui.h"
+#include "./lib/prompt.h"
+
 
 int main(void) {
     // char *result = loadFile("./db/text.txt");
 	// printf("%s\n", result);
 	Splash_Screen();
 	mainMenuScene();
+    getmainMenu();
     return 0;
 }
 

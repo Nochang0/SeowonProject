@@ -42,7 +42,7 @@ void Splash_Screen(void) {
 }
 
 // 메인 메뉴
-char* mainMenuScene(void) {
+void mainMenuScene(void) {
     char moveNum[5];
     printf(WHITE "\033[2J\033[H");						// 프롬프트 Clear
 	printf("╔═══════════════════════════════════════════════════╗\n");
@@ -51,10 +51,6 @@ char* mainMenuScene(void) {
 	printf("        1. 📝수입 관리        2. 📑지출 관리         \n\n");
 	printf("        3. 🔍내역 검색        " LIGHT_RED "q. ⛔종료하기\n" WHITE);
     printf("\n╚═══════════════════════════════════════════════════╝\n");
-    
-    printf("메뉴 선택: " LIGHT_GREEN);
-    scanf("%s", moveNum);
-    return moveNum;
 }
 
 // 수입 메뉴

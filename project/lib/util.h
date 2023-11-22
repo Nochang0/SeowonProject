@@ -15,6 +15,10 @@
 //     return Date;
 // }
 
+// x: 들여쓰기, y: 줄바꿈
+void gotoxy(int x, int y) {
+    printf("\033[%d;%df", y, x);
+}
 
 void LoadSpin(int file_size) {
     int download_speed = 10;
