@@ -36,4 +36,11 @@ int main(void) {
     return 0;
 }
 
+
+
+
+
+
+
+
 // cd /workspace/SeowonCProject/project/ && gcc ./main.c -o /tmp/a.out -lm -ljson-c -lncurses && clear && /tmp/a.out

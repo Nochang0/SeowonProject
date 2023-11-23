@@ -17,12 +17,13 @@
 //     return Date;
 // }
 
+
 // x: 들여쓰기, y: 줄바꿈
 void gotoxy(int x, int y) {
     printf("\033[%d;%df", y, x);
 }
 
-
+// 로딩 모션
 void LoadSpin(int file_size, char* plusText) {
     printf(WHITE);
     int download_speed = 10;
@@ -41,6 +42,7 @@ void LoadSpin(int file_size, char* plusText) {
 	printf("\rSuccess!\r");
 }
 
+// 요소가 배열 안에 요소에 해당하는 지 확인
 bool isArray(char value, char array[], int size) {
     for (int i = 0; i < size; i++) {
         if (array[i] == value) {
