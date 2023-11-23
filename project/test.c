@@ -20,8 +20,9 @@
 
 
 int main() {
-	Splash_Screen();
-    inputBarByMainMenu();
+	//Splash_Screen();
+    // inputBarByMainMenu();
+    incomeMenu();
     return 0;
 }
 

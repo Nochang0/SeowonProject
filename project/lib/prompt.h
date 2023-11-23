@@ -29,8 +29,8 @@ bool isArray(char value, char array[], int size);
 
 
 void inputBarByMainMenu(void) {
-    char moveNum;					// 이동 기호 입력
     mainMenu();						// 입력창 높이 및 ui 장면
+    char moveNum;					// 이동 기호 입력
     char* menuArr = "123q";			// 입력 값 배열
     
     printf(WHITE);
