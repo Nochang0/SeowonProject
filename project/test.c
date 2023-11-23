@@ -10,15 +10,21 @@
 #include "./lib/prompt.h"
 
 
-int main(void) {
-    // char *result = loadFile("./db/text.txt");
-	// printf("%s\n", result);
+// int main(void) {
+// 	Splash_Screen();
+// 	int move = mainMenuScene();
+//     printf("%d\n", move[0]);
+//     // inputBar(move);
+//     return 0;
+// }
+
+
+int main() {
 	Splash_Screen();
-	int move = mainMenuScene();
-    printf("%d\n", move[0]);
-    // inputBar(move);
+    inputBarByMainMenu();
     return 0;
 }
+
 
 
 // cd /workspace/SeowonCProject/project/ && gcc ./test.c -o /tmp/a.out -lm -ljson-c && clear && /tmp/a.out

@@ -1,9 +1,10 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <stdio.h>
 #include <time.h>
+#include <stdio.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #define WHITE   "\x1b[0m"
 
@@ -39,5 +40,15 @@ void LoadSpin(int file_size, char* plusText) {
     }
 	printf("\rSuccess!\r");
 }
+
+bool isArray(char value, char array[], int size) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == value) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 #endif // UTIL_H
