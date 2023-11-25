@@ -9,25 +9,31 @@
 
 // 커스텀 라이브러리
 #include "../lib/fs.h"
+#include "../lib/prompt.h"
 
 // 매크로 변수
+#define INCOME_FILE_PATH "./db/income.json"
+#define SPEND_FILE_PATH "./db/spend.json"
 #define SPEND_LIMIT_FILE_PATH "./db/spendLimit.txt"
+#define SPEND_PROMISE_FILE_PATH "./db/spendPromise.json"
 #define RECENT_LISTID_FILE_PATH "./db/uniqueNum.txt"
 
 // 함수 목록
-int updatelistId(char* listId); 									// 내역 고유번호를 업데이트 및 출력합니다.
-char* addIncomeList(char* jsonData, char* HistoryData);				// 수입 내역을 추가합니다.
-char* addSpendList(char* jsonData, char* HistoryData);				// 지출 내역을 추가합니다.
-int setSpendLimit(char* jsonData, char* spendPrice);				// 지출 한도를 설정합니다.
-char* getSpendLimit(char* jsonData);								// 지출 내역 현황을 출력합니다.
-char* setSpendPromise(char* jsonData, char* HistoryData);			// 지출 예약 내역을 추가합니다.
+static int updatelistId(char* listId); 								// 내역 고유번호를 업데이트 및 출력합니다.
+bool addIncomeList(char* HistoryData);				                // 수입 내역을 추가합니다.
+bool addSpendList(char* HistoryData);				                // 지출 내역을 추가합니다.
+bool setSpendLimit(char* spendPrice);				                // 지출 한도를 설정합니다.
+char* getSpendLimit(void);								            // 지출 내역 현황을 출력합니다.
+bool setSpendPromise(char* HistoryData);			                // 지출 예약 내역을 추가합니다.
 char* findDate(char* jsonData, char* actList, char* targetDate);	// 수입 및 지출 내역을 날짜로 검색합니다.
 char* findTag(char* jsonData, char* actList, char* targetTag);		// 수입 및 지출 내역을 카테고리로 검색합니다.
+char* createIncomeInfo(struct InputInfo Incomedata);
+char* createSpendInfo(struct InputInfo Spenddata);
     
 
 // 내역 고유번호 업데이트 및 출력 (RETURN: 새로운 내역 고유번호)
-int updatelistId(char* listId) {
-    char PushlistId[9999];							// 저장할 내역 고유번호
+static int updatelistId(char* listId) {
+    char PushlistId[999];							// 저장할 내역 고유번호
     int NewlistId = (int)(atoi(listId) + 1);		// 새로운 내역 고유번호
     sprintf(PushlistId, "%d", NewlistId);			// 문자열 변경
     
@@ -36,11 +42,14 @@ int updatelistId(char* listId) {
 }
 
 // 수입 내역 추가 (RETURN: true)
-bool addIncomeList(char* jsonData, char* HistoryData) {
-    struct json_object* root;           				// 전체 리스트 내역
+bool addIncomeList(char* HistoryData) {
+    struct json_object* root;           				// 전체 리스트 내역 딕셔너리
     struct json_object* typeList;       				// 수입 | 지출내역
     struct json_object* listInfo;       				// 내역 세부 데이터
     char* listId = loadFile(RECENT_LISTID_FILE_PATH);	// 내역 고유번호
+    
+    // 수입 내역 데이터 불러오기
+    char* jsonData = loadFile(INCOME_FILE_PATH);
     
     // 기존 JSON 데이터 파싱
     root = json_tokener_parse(jsonData);
@@ -61,11 +70,14 @@ bool addIncomeList(char* jsonData, char* HistoryData) {
 }
 
 // 지출 내역 추가 (RETURN: true)
-bool addSpendList(char* jsonData, char* HistoryData) {
+bool addSpendList(char* HistoryData) {
     struct json_object* root;           				// 전체 리스트 내역
     struct json_object* typeList;       				// 수입 | 지출내역
     struct json_object* listInfo;       				// 내역 세부 데이터
     char* listId = loadFile(RECENT_LISTID_FILE_PATH);	// 내역 고유번호
+    
+    // 지출 내역 데이터 불러오기
+    char* jsonData = loadFile(SPEND_FILE_PATH);
     
     // 기존 JSON 데이터 파싱
     root = json_tokener_parse(jsonData);
@@ -86,40 +98,21 @@ bool addSpendList(char* jsonData, char* HistoryData) {
 }
 
 // 지출 한도 설정 (RETURN: true)
-bool setSpendLimit(char* jsonData, char* spendPrice) {
-    struct json_object* root;           // 전체 리스트 내역
-    struct json_object* typeList;       // 수입 | 지출내역
-    int totalPrice = 0;                 // 총지출액
-    
+bool setSpendLimit(char* spendPrice) {
     // 지출 한도 저장
     saveFile(SPEND_LIMIT_FILE_PATH, spendPrice);
-    
-    // 기존 JSON 데이터 파싱
-    root = json_tokener_parse(jsonData);
-
-    // "지출목록" 객체 가져오기
-    json_object_object_get_ex(root, "지출목록", &typeList);
-    
-    // 각 내역의 "금액" 항목을 모두 더하기
-    json_object_object_foreach(typeList, key, value) {
-        struct json_object *getPrice;
-        if (json_object_object_get_ex(value, "금액", &getPrice)) {
-            totalPrice += json_object_get_int(getPrice);
-        }
-    }
-    // int result = (int)(atoi(spendPrice) - totalPrice);
-    
-    // 메모리 누수 방지
-    json_object_put(root);
     return true;
 }
 
 // 지출 예약 내역 추가 (RETURN: true)
-bool setSpendPromise(char* jsonData, char* HistoryData) {
+bool setSpendPromise(char* HistoryData) {
     struct json_object* root;           				// 전체 리스트 내역
     struct json_object* typeList;       				// 수입 | 지출내역
     struct json_object* listInfo;       				// 내역 세부 데이터
     char* listId = loadFile(RECENT_LISTID_FILE_PATH);	// 내역 고유번호
+    
+    // 지출 예약 내역 데이터 불러오기
+    char* jsonData = loadFile(SPEND_PROMISE_FILE_PATH);
     
     // 기존 JSON 데이터 파싱
     root = json_tokener_parse(jsonData);
@@ -236,14 +229,16 @@ char* findTag(char* jsonData, char* actList, char* targetTag) {
 }
 
 // 수입 내역 출력
-char* getIncomeList(char* jsonData) {
+char* getIncomeList(void) {
     struct json_object* root;		// 전체 리스트 내역
     struct json_object* incomeList;	// 수입 내역
     struct json_object* entry;		// 내역 세부 데이터
-    
     char* result = malloc(1000); 	// 적절한 크기로 메모리 동적 할당
     char entryText[500]; 			// 각 항목을 저장할 임시 문자열 배열
 
+    // 수입 내역 데이터 불러오기
+    char* jsonData = loadFile(INCOME_FILE_PATH);
+    
     root = json_tokener_parse(jsonData);
     json_object_object_get_ex(root, "수입목록", &incomeList);
     sprintf(result, "");
@@ -280,13 +275,16 @@ char* getIncomeList(char* jsonData) {
 }
 
 // 지출 내역 출력
-char* getSpendList(char* jsonData) {
+char* getSpendList(void) {
     struct json_object* root;		// 전체 리스트 내역
     struct json_object* spendList;	// 지출 내역
     struct json_object* entry;		// 내역 세부 데이터
     char* result = malloc(1000); 	// 적절한 크기로 메모리 동적 할당
     char entryText[500]; 			// 각 항목을 저장할 임시 문자열 배열
-
+    
+    // 지출 내역 데이터 불러오기
+    char* jsonData = loadFile(SPEND_FILE_PATH);
+    
     root = json_tokener_parse(jsonData);
     json_object_object_get_ex(root, "지출목록", &spendList);
     sprintf(result, "");
@@ -323,13 +321,16 @@ char* getSpendList(char* jsonData) {
 }
 
 // 지출 예약 내역 출력
-char* getSpendList(char* jsonData) {
+char* getSpendPromiseList(void) {
     struct json_object* root;		// 전체 리스트 내역
     struct json_object* spendList;	// 지출 내역
     struct json_object* entry;		// 내역 세부 데이터
     char* result = malloc(1000); 	// 적절한 크기로 메모리 동적 할당
     char entryText[500]; 			// 각 항목을 저장할 임시 문자열 배열
 
+    // 지출 예약 내역 데이터 불러오기
+    char* jsonData = loadFile(SPEND_PROMISE_FILE_PATH);
+    
     root = json_tokener_parse(jsonData);
     json_object_object_get_ex(root, "지출예약목록", &spendList);
     sprintf(result, "");
@@ -366,12 +367,15 @@ char* getSpendList(char* jsonData) {
 }
 
 // 지출 내역 현황 출력 (RETURN: "지출 한도 %s원에서 %d원을 지출하였습니다.")
-char* getSpendLimit(char* jsonData) {
+char* getSpendLimit(void) {
     struct json_object* root;           // 전체 리스트 내역
     struct json_object* typeList;       // 수입 | 지출내역
     int totalPrice = 0;                 // 총지출액
     
-    // 지출 한도 호출
+    // 지출 내역 데이터 불러오기
+    char* jsonData = loadFile(SPEND_FILE_PATH);
+    
+    // 지출 한도 불러오기
     char* spendLimit = loadFile(SPEND_LIMIT_FILE_PATH);
     
     // 기존 JSON 데이터 파싱
@@ -387,7 +391,8 @@ char* getSpendLimit(char* jsonData) {
             totalPrice += json_object_get_int(getPrice);
         }
     }
-    char* result = malloc(1000);	// 동적 할당 (추후 설명 찾아볼 예정)
+    // 크키 동적 할당
+    char* result = (char*)malloc(1000);
     sprintf(result, "지출 한도 %s원에서 %d원을 지출하였습니다.", spendLimit, totalPrice);
     
     // 메모리 누수 방지
@@ -395,29 +400,46 @@ char* getSpendLimit(char* jsonData) {
     return result;
 }
 
-// 수입 내역 데이터 생성
-char* createIncomeInfo(char* Date, char* Amount, char* Source, char* Memo, char* tag) {
-    struct json_object *json, *item, *incomeObject;
-    char* listId = loadFile(RECENT_LISTID_FILE_PATH);	// 내역 고유번호
+// 수입 내역에 추가할 데이터 생성
+char* createIncomeInfo(struct InputInfo Incomedata) {
+    struct json_object *root, *incomeObject;
     
     // 최상위 JSON 객체 생성
-    json = json_object_new_object();
+    root = json_object_new_object();
 
-    // 내부 객체 생성
+    // 내역 객체 생성
     incomeObject = json_object_new_object();
 
     // 내부 객체에 속성 추가
-    json_object_object_add(incomeObject, "날짜", json_object_new_string("2023-11-09"));
-    json_object_object_add(incomeObject, "금액", json_object_new_string("2000000"));
-    json_object_object_add(incomeObject, "수입처", json_object_new_string("월급"));
-    json_object_object_add(incomeObject, "메모", json_object_new_string(""));
-    json_object_object_add(incomeObject, "카테고리", json_object_new_string("tag1"));
-
-    // 최상위 JSON 객체에 내부 객체 추가
-    json_object_object_add(json, listId, incomeObject);
+    json_object_object_add(incomeObject, "날짜", json_object_new_string(Incomedata.Date));
+    json_object_object_add(incomeObject, "금액", json_object_new_string(Incomedata.Amount));
+    json_object_object_add(incomeObject, "수입처", json_object_new_string(Incomedata.Source));
+    json_object_object_add(incomeObject, "메모", json_object_new_string(Incomedata.Memo));
+    json_object_object_add(incomeObject, "카테고리", json_object_new_string(Incomedata.Tag));
 
     // JSON 문자열 반환
-    return json_object_to_json_string_ext(json, JSON_C_TO_STRING_PRETTY);
+    return json_object_to_json_string_ext(incomeObject, JSON_C_TO_STRING_PRETTY);
+}
+
+// 지출 및 예약 내역에 추가할 데이터 생성
+char* createSpendInfo(struct InputInfo Spenddata) {
+    struct json_object *root, *spendObject;
+    
+    // 최상위 JSON 객체 생성
+    root = json_object_new_object();
+
+    // 내역 객체 생성
+    spendObject = json_object_new_object();
+
+    // 내역 객체에 속성 추가
+    json_object_object_add(spendObject, "날짜", json_object_new_string(Spenddata.Date));
+    json_object_object_add(spendObject, "금액", json_object_new_string(Spenddata.Amount));
+    json_object_object_add(spendObject, "지출처", json_object_new_string(Spenddata.Source));
+    json_object_object_add(spendObject, "메모", json_object_new_string(Spenddata.Memo));
+    json_object_object_add(spendObject, "카테고리", json_object_new_string(Spenddata.Tag));
+
+    // JSON 문자열 반환
+    return json_object_to_json_string_ext(spendObject, JSON_C_TO_STRING_PRETTY);
 }
 
 

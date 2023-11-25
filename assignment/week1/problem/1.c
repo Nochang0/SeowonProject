@@ -13,6 +13,7 @@ int main(void) {
     scanf("%d", &bin);
 
     // 주어진 2진수를 각 자릿수의 값과 2의 거듭제곱을 곱함 (ex. 110101 => 1 * 2^5 + 1 * 2^4 + 0 * 2^3 + 1 * 2^2 + 0 * 2^1 + 1 * 2^0 => 32 + 16 + 0 + 4 + 0 + 1 = 53)
+    
     while (bin > 0) {
         int remainder = bin % 10;
         dword += remainder * pow;

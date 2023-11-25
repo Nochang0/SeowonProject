@@ -21,7 +21,7 @@ int main(void) {
     json_object_object_add(root, "address", address);
 
     // JSON 형식 데이터 출력
-    const char *jsonString = json_object_to_json_string_ext(root, JSON_C_TO_STRING_PRETTY);
+    const char* jsonString = json_object_to_json_string_ext(root, JSON_C_TO_STRING_PRETTY);
     printf("%s\n", jsonString);
 
     // JSON 요소 제거
