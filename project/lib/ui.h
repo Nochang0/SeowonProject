@@ -1,7 +1,7 @@
 #ifndef UI_H
 #define UI_H
 
-
+// 색상 코드
 #define RED     		"\x1b[31m"
 #define LIGHT_RED     	"\033[1;31m"
 #define GREEN   		"\x1b[32m"
@@ -18,21 +18,41 @@
 #include <stdio.h>
 
 // 커스텀 라이브러리
-#include "../lib/data_manager.h"
 #include "../lib/util.h"
 
-// UI 장면 함수
-void Splash_Screen(void);
-void mainMenuScene(void);
-void incomeMenuScene(void);
-void spendMenuScene(void);
-void searchMenuScene(void);
-void inputBarScene(int height);
-void ExitScene(void);
-void WarningScene(int height);
-void plusIncomeScene(void);
-void plusSpendScene(void);
-void plusSpendPromiseScene(void);
+// UI 장면 함수들
+void Splash_Screen(void);                       // 스플래시 이미지 (시작 로딩창)
+
+// 메뉴 UI 화면들
+void mainMenuScene(void);                       // 메인 메뉴 UI 화면
+void incomeMenuScene(void);                     // 수입 메뉴 UI 화면
+void spendMenuScene(void);                      // 지출 메뉴 UI 화면
+void searchMenuScene(void);                     // 검색 메뉴 UI 화면
+
+// 내역 추가 UI 화면들
+void plusIncomeScene(void);                     // 수입내역 추가 UI 화면
+void plusSpendScene(void);                      // 지출내역 추가 UI 화면
+void plusSpendPromiseScene(void);               // 지출 예약내역 추가 UI 화면
+
+// 내역 전체 보여주기 UI 화면들
+void lookIncomeScene(char* listData);           // 수입내역 전체보기 UI 화면
+void lookSpendScene(char* listData);            // 지출내역 전체보기 UI 화면
+void lookSpendPromiseScene(char* listData);     // 지출 예약내역 전체보기 UI 화면
+
+// 지출 한도 설정 UI 화면
+void setupSpendLimitScene(void);                
+
+// 내역 검색 및 보여주기 UI 화면들
+void searchIncomeScene(void);                   // 수입내역 검색요소 선택 UI 화면
+void searchIncomeResultScene(char* searchData); // 수입내역 검색결과 보여주기 UI 화면
+
+void searchSpendScene(void)                     // 지출내역 검색요소 선택 UI 화면
+void searchSpendResultScene(char* searchData);  // 지출내역 검색요소 선택 UI 화면
+    
+// 나가기 및 경고 UI 화면
+void WarningScene(int height);                  // 입력 오류 경고창 UI 화면
+void ExitScene(void);                           // 프로그램 종료 UI 화면
+
 
 
 
@@ -54,12 +74,15 @@ void Splash_Screen(void) {
 	LoadSpin(100, "");
 }
 
+
+
 // 0. 메인 메뉴
 void mainMenuScene(void) {
     Clear();	// 프롬프트 Clear
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║                   📒메인 메뉴                     ║\n");
     printf("║                                                   ║\n");
 	printf("║       1. 📝수입 관리        2. 📑지출 관리        ║\n");
     printf("║                                                   ║\n");
@@ -77,10 +100,11 @@ void incomeMenuScene(void) {
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║                   수입 관련 메뉴                  ║\n");
-	printf("║   1. 📝수입목록 추가        2. 📑수입목록 보기     ║\n");
+    printf("║                   📒수입 메뉴                     ║\n");
     printf("║                                                   ║\n");
-	printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "  q. ⛔종료하기" WHITE "        ║\n" WHITE);
+	printf("║    1. 📝수입목록 추가      2. 📑수입목록 보기      ║\n");
+    printf("║                                                   ║\n");
+	printf("║      " YELLOW "z. 🚪뒤로가기         " LIGHT_RED "  q. ⛔종료하기" WHITE "        ║\n" WHITE);
     printf("║                                                   ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
     printf("╔═══════════════════════════════════════════════════╗\n");
@@ -97,10 +121,14 @@ void spendMenuScene(void) {
     printf("╠═══════════════════════════════════════════════════╣\n");
     printf("║"BLUE " %s   " WHITE "║\n", notice);
     printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║                   지출 관련 메뉴                  ║\n");
+    printf("║                   📒지출 메뉴                     ║\n");
+    printf("║                                                   ║\n");
 	printf("║   1. 📝지출목록 추가        2. 📑지출목록 보기     ║\n");
+    printf("║                                                   ║\n");
 	printf("║   3. 📝지출한도 설정        4. 📑지출예약 설정     ║\n");    
-	printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "            ║\n" WHITE);
+    printf("║                                                   ║\n");
+	printf("║      " YELLOW "z. 🚪뒤로가기         " LIGHT_RED "  q. ⛔종료하기" WHITE "        ║\n" WHITE);
+    printf("║                                                   ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
     printf("╔═══════════════════════════════════════════════════╗\n");
     printf("║ ▶️ 입력:                                           ║\n");
@@ -113,17 +141,22 @@ void searchMenuScene(void) {
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║                   검색 관련 메뉴                  ║\n");
-	printf("║  1. 📑수입목록 날짜검색   2. 📑수입목록 테그검색   ║\n");
+    printf("║                   📒검색 메뉴                     ║\n");
     printf("║                                                   ║\n");
-	printf("║  3. 📑지출목록 날짜검색   4. 📑지출목록 테그검색   ║\n");
+	printf("║       1. 📑수입 목록 날짜 / 카테고리 검색           ║\n");
     printf("║                                                   ║\n");
-	printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "          ║\n" WHITE);
+	printf("║       2. 📑지출 목록 날짜 / 카테고리 검색           ║\n");
+    printf("║                                                   ║\n");
+	printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
+    printf("║                                                   ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
     printf("╔═══════════════════════════════════════════════════╗\n");
     printf("║ ▶️ 입력:                                           ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
 }
+
+
+
 
 // 수입 내역 추가 화면
 void plusIncomeScene(void) {
@@ -136,6 +169,7 @@ void plusIncomeScene(void) {
     printf("║  🛍️수입처:                                          ║\n");
     printf("║  🧾메모:                                            ║\n");
     printf("║  📅카테고리:                                        ║\n");
+    printf("║                                                   ║\n");
     printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
     printf("╚═══════════════════════════════════════════════════╝\n");
     printf("╔═══════════════════════════════════════════════════╗\n");
@@ -154,6 +188,7 @@ void plusSpendScene(void) {
     printf("║  🛍️지출처:                                          ║\n");
     printf("║  🧾메모:                                            ║\n");
     printf("║  📅카테고리:                                        ║\n");
+    printf("║                                                   ║\n");
     printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
     printf("╚═══════════════════════════════════════════════════╝\n");
     printf("╔═══════════════════════════════════════════════════╗\n");
@@ -172,12 +207,16 @@ void plusSpendPromiseScene(void) {
     printf("║  🛍️지출처:                                          ║\n");
     printf("║  🧾메모:                                            ║\n");
     printf("║  📅카테고리:                                        ║\n");
+    printf("║                                                   ║\n");
     printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
     printf("╚═══════════════════════════════════════════════════╝\n");
     printf("╔═══════════════════════════════════════════════════╗\n");
     printf("║                                                   ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
 }
+
+
+
 
 // 수입 내역 출력 화면
 void lookIncomeScene(char* listData) {
@@ -221,6 +260,69 @@ void lookSpendPromiseScene(char* listData) {
     printf("╚═══════════════════════════════════════════════════╝\n");
 }
 
+
+
+
+// 수입 내역 검색요소 선택 화면
+void searchIncomeScene(void) {
+    Clear();	// 프롬프트 Clear
+    printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●               🔎 수입 내역 검색                  ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+	printf("║ 1. 📝날짜검색 (yyyy-mm-dd)   2. 📑카테고리 검색    ║\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║ ▶️ 검색 요소 선택:                                 ║\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║ ▶️ 검색:                                           ║\n");
+    printf("╚═══════════════════════════════════════════════════╝\n");
+}
+
+// 수입 검색내역 출력 화면
+void searchIncomeResultScene(char* searchData) {
+    Clear();	// 프롬프트 Clear
+    printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●             🔎 수입 내역 검색 결과               ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
+    printf("╚═══════════════════════════════════════════════════╝\n");
+    printf("%s\n", searchData);
+	printf("╔═══════════════════════════════════════════════════╗\n");
+    printf("║ ▶️ 입력:                                           ║\n");
+    printf("╚═══════════════════════════════════════════════════╝\n");
+}
+
+
+// 지출 내역 검색요소 선택 화면
+void searchSpendScene(void) {
+    Clear();	// 프롬프트 Clear
+    printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●               🔎 지출 내역 검색                  ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+	printf("║ 1. 📝날짜검색 (yyyy-mm-dd)   2. 📑카테고리 검색    ║\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║ ▶️ 검색 요소 선택:                                 ║\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║ ▶️ 검색:                                           ║\n");
+    printf("╚═══════════════════════════════════════════════════╝\n");
+}
+
+// 지출 검색내역 출력 화면
+void searchSpendResultScene(char* searchData) {
+    Clear();	// 프롬프트 Clear
+    printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●             🔎 지출 내역 검색 결과               ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+    printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
+    printf("╚═══════════════════════════════════════════════════╝\n");
+    printf("%s\n", searchData);
+	printf("╔═══════════════════════════════════════════════════╗\n");
+    printf("║ ▶️ 입력:                                           ║\n");
+    printf("╚═══════════════════════════════════════════════════╝\n");
+}
+
+
+
+
 // 지출 한도 설정 화면
 void setupSpendLimitScene(void) {
     Clear();	// 프롬프트 Clear
@@ -234,72 +336,6 @@ void setupSpendLimitScene(void) {
 	printf("╔═══════════════════════════════════════════════════╗\n");
     printf("║ ▶️ 입력:                                           ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
-}
-
-// 수입내역 검색요소 선택 화면
-void searchIncomeScene(void) {
-    Clear();	// 프롬프트 Clear
-    printf("╔═══════════════════════════════════════════════════╗\n");
-	printf("●                 🔎 수입 내역 검색                  ●\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-	printf("║  1. 📝날짜검색 (yyyy-mm-dd)   2. 📑카테고리 검색     ║\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║ ▶️ 검색 요소 선택:                                 ║\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║ ▶️ 검색:                                           ║\n");
-    printf("╚═══════════════════════════════════════════════════╝\n");
-}
-
-// 수입 내역 출력 화면
-void searchIncomeResultScene(char* searchData) {
-    Clear();	// 프롬프트 Clear
-    printf("╔═══════════════════════════════════════════════════╗\n");
-	printf("●           🔎 수입 내역 검색 결과                  ●\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
-    printf("╚═══════════════════════════════════════════════════╝\n");
-    printf("%s\n", searchData);
-	printf("╔═══════════════════════════════════════════════════╗\n");
-    printf("║ ▶️ 입력:                                           ║\n");
-    printf("╚═══════════════════════════════════════════════════╝\n");
-}
-
-// 지출내역 검색 화면
-void searchSpendScene(void) {
-    Clear();	// 프롬프트 Clear
-    printf("╔═══════════════════════════════════════════════════╗\n");
-	printf("●                 🔎 지출 내역 검색                  ●\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-	printf("║  1. 📝날짜검색 (yyyy-mm-dd)   2. 📑카테고리 검색     ║\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║ ▶️ 검색 요소 선택:                                 ║\n");
-    printf("╚═══════════════════════════════════════════════════╝\n");
-    printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
-    printf("╚═══════════════════════════════════════════════════╝\n");
-}
-
-// 지출 내역 검색 화면
-void searchIncomeScene(void) {
-    Clear();	// 프롬프트 Clear
-    printf("╔═══════════════════════════════════════════════════╗\n");
-	printf("●                 🔎 지출 내역 검색                  ●\n");
-    printf("╠═══════════════════════════════════════════════════╣\n");
-	printf("║   1. 📝수입목록 추가        2. 📑수입목록 보기     ║\n");
-    printf("║       " YELLOW "z. 🚪뒤로가기        " LIGHT_RED "q. ⛔종료하기" WHITE "           ║\n" WHITE);
-    printf("╚═══════════════════════════════════════════════════╝\n");
-	printf("╔═══════════════════════════════════════════════════╗\n");
-    printf("║ ▶️ 입력:                                           ║\n");
-    printf("╚═══════════════════════════════════════════════════╝\n");
-}
-
-// 입력바 추가 화면
-void inputBarScene(int height) {
-    printf(WHITE);
-	printf("╔═══════════════════════════════════════════════════╗\n");
-    printf("║ ▶️ 입력:                                           ║\n");
-    printf("╚═══════════════════════════════════════════════════╝\n");
-    gotoxy(1, height);
-    printf(LIGHT_GREEN);
 }
 
 // 경고 추가 화면
@@ -323,5 +359,6 @@ void ExitScene(void) {
     Clear();
     exit(0);
 }
+
 
 #endif // UI_H

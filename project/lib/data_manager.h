@@ -4,6 +4,7 @@
 // 기본 라이브러리
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 #include <json-c/json.h>
 
@@ -17,43 +18,52 @@
 #define SPEND_PROMISE_FILE_PATH "./db/spendPromise.json"
 #define RECENT_LISTID_FILE_PATH "./db/uniqueNum.txt"
 
+// 내역 추가 데이터 구조체 (수입|지출)
 struct InputInfo {
-    char* Date;     // 날짜
+    char Date[100];     // 날짜
     char Amount[100];   // 금액
-    char Source[100];  // 수입|지출 처
+    char Source[100];   // 수입처|지출처
     char Memo[100];     // 메모글
     char Tag[100];      // 카테고리
 };
 
+// 내역 출력 UI 관련 구조체
 struct ShowInfo {
-    int listHeight;
-    char* listData;
+    int listHeight;     // 입력바 삽입 높이
+    char* listData;     // 내역 데이터
 };
 
-// 함수 목록
-static int updatelistId(char* listId); 								// 내역 고유번호를 업데이트 및 출력합니다.
-bool addIncomeList(char* HistoryData);				                // 수입 내역을 추가합니다.
-bool addSpendList(char* HistoryData);				                // 지출 내역을 추가합니다.
-bool setSpendLimit(char* spendPrice);				                // 지출 한도를 설정합니다.
-bool addSpendPromise(char* HistoryData);			                // 지출 예약 내역을 추가합니다.
-char* getSpendLimit(void);								            // 지출 내역 현황을 출력합니다.
-char* findDate(char* jsonData, char* actList, char* targetDate);	// 수입 및 지출 내역을 날짜로 검색합니다.
-char* findTag(char* jsonData, char* actList, char* targetTag);		// 수입 및 지출 내역을 카테고리로 검색합니다.
+// 커스텀 함수 목록
+static bool updatelistId(char* listId); 							// 내역 고유번호를 업데이트
+
+// 변환 관련 함수
 char* createIncomeInfo(struct InputInfo Incomedata);                // 저장할 수입 데이터를 JSON 변환합니다.
 char* createSpendInfo(struct InputInfo Spenddata);                  // 저장할 지출&예약 데이터를 JSON 변환합니다.
-struct ShowInfo getIncomeList(void);
-struct ShowInfo getSpendList(void);
-struct ShowInfo getSpendPromiseList(void);
+
+// 추가 관련 함수 (prompt.h)
+bool addIncomeList(char* HistoryData);				                // 수입 내역 추가
+bool addSpendList(char* HistoryData);				                // 지출 내역 추가
+bool setSpendLimit(char* spendPrice);				                // 지출 한도 설정
+bool addSpendPromise(char* HistoryData);			                // 지출 예약내역 추가
+
+// 출력 관련 함수 (UI, Scene관련 함수들)
+char* getSpendLimit(void);								            // 지출 내역 현황을 출력 (UI)
+struct ShowInfo getIncomeList(void);                                // 수입 내역과 줄바꿈 구조체 반환 (UI)
+struct ShowInfo getSpendList(void);                                 // 지출 내역과 줄바꿈 구조체 반환 (UI)
+struct ShowInfo getSpendPromiseList(void);                          // 지출 예약내역과 줄바꿈 구조체 반환 (UI)
+struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate);	// 수입 및 지출 내역의 날짜 검색결과 반환 (UI)
+struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag);	// 수입 및 지출 내역의 카테고리 검색결과 반환 (UI)
+
     
     
 // 내역 고유번호 업데이트 및 출력 (RETURN: 새로운 내역 고유번호)
-static int updatelistId(char* listId) {
+static bool updatelistId(char* listId) {
     char PushlistId[999];							// 저장할 내역 고유번호
     int NewlistId = (int)(atoi(listId) + 1);		// 새로운 내역 고유번호
     sprintf(PushlistId, "%d", NewlistId);			// 문자열 변경
     
     saveFile(RECENT_LISTID_FILE_PATH, PushlistId);	// 내역 고유번호 파일 저장
-    return NewlistId;
+    return true;
 }
 
 // 수입 내역 추가 (RETURN: true)
@@ -157,9 +167,11 @@ bool addSpendPromise(char* HistoryData) {
 }
 
 // 내역 날짜 검색
-char* findDate(char* jsonData, char* actList, char* targetDate) {
+struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate) {
     struct json_object* root = json_tokener_parse(jsonData);
-
+    struct ShowInfo searchData;     // UI 관련 구조체 (내역, 텍스트 높이)
+    int listNum = 0;                // 내역 텍스트 높이
+    
     // "지출|수입 목록" 객체 가져오기
     struct json_object* typeList;
     if (json_object_object_get_ex(root, actList, &typeList)) {
@@ -192,22 +204,28 @@ char* findDate(char* jsonData, char* actList, char* targetDate) {
                         sprintf(result + strlen(result), "%s: %s\n", innerKey, json_object_get_string(innerValue));
                     }
                     strcat(result, "-----------------------------------------------------\n"); // 줄바꿈 추가
+                    listNum++;
                 }
             }
         }
 
+        searchData.listHeight = listNum;    // 높이
+        searchData.listData = result;       // 내역 검색 데이터
+        
         json_object_put(root);
-        return result;
+        return searchData;
     } else {
         json_object_put(root);
-        return "지출목록을 찾을 수 없습니다.";
+        // return "지출목록을 찾을 수 없습니다.";
     }
 }
 
 // 내역 카테고리 검색
-char* findTag(char* jsonData, char* actList, char* targetTag) {
+struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag) {
     struct json_object* root = json_tokener_parse(jsonData);
-
+    struct ShowInfo searchData;     // UI 관련 구조체 (내역, 텍스트 높이)
+    int listNum = 0;                // 내역 텍스트 높이
+    
     // "지출|수입 목록" 객체 가져오기
     struct json_object* typeList;
     if (json_object_object_get_ex(root, actList, &typeList)) {
@@ -240,14 +258,19 @@ char* findTag(char* jsonData, char* actList, char* targetTag) {
                         sprintf(result + strlen(result), "%s: %s\n", innerKey, json_object_get_string(innerValue));
                     }
                     strcat(result, "-----------------------------------------------------\n"); // 줄바꿈 추가
+                    listNum++;
                 }
             }
         }
+        
+        searchData.listHeight = listNum;    // 높이
+        searchData.listData = result;       // 내역 검색 데이터
+        
         json_object_put(root);
-        return result;
+        return searchData;
     } else {
         json_object_put(root);
-        return "지출목록을 찾을 수 없습니다.";
+        // return "지출목록을 찾을 수 없습니다.";
     }
 }
 
@@ -347,7 +370,7 @@ struct ShowInfo getSpendList(void) {
         sprintf(entryText, "\"카테고리\": \"%s\"\n", json_object_get_string(entry));
         strcat(result, entryText);
 
-        strcat(result, "----------------------------------------------------------------------------\n");
+        strcat(result, "-----------------------------------------------------\n");
         listNum++;
     }
         
@@ -401,7 +424,7 @@ struct ShowInfo getSpendPromiseList(void) {
         sprintf(entryText, "\"카테고리\": \"%s\"\n", json_object_get_string(entry));
         strcat(result, entryText);
 
-        strcat(result, "----------------------------------------------------------------------------\n");
+        strcat(result, "-----------------------------------------------------\n");
         listNum++;
     }
     

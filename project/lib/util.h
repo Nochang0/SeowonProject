@@ -1,46 +1,41 @@
 #ifndef UTIL_H
 #define UTIL_H
 
-#include <time.h>
+// 기본 라이브러리
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdbool.h>
-#define WHITE   	"\x1b[0m"
 
-void Clear(void); 
-char* getDate(void);
-void gotoxy(int x, int y);
-void LoadSpin(int file_size, char* plusText);
-bool isArray(char value, char array[]);
-void disappearText(char* text);
+// 커스텀 유틸리티 함수
+void Clear(void);                               // 터미널의 텍스트 전부 삭제
+void gotoxy(int x, int y);                      // 터미널의 좌표위치에서 입력 시작
+void LoadSpin(int totalSpeed, char* plusText);  // 움직이는 로딩 효과
+bool isArray(char value, char array[]);         // 원소가 배열에 속하는 지 확인
+void disappearText(char* text);                 // 터미널에서 텍스트의 사라짐 효과 (종료 함수 전용)
 
 
-char* getDate(void) {
-    char* Date = malloc(1000);
-    time_t t = time(NULL);
-    struct tm tm_info = *localtime(&t);
-    // 현재 날짜를 yyyy-mm-dd 형식으로 문자열에 저장
-    sprintf(Date, "%04d-%02d-%02d", tm_info.tm_year + 1900, tm_info.tm_mon + 1, tm_info.tm_mday);
-    return Date;
+// 터미널 텍스트 청소
+void Clear(void) {
+    gotoxy(1, 1);
+    printf(WHITE "\033[2J\033[H");
 }
 
-
-// x: 들여쓰기, y: 줄바꿈
+// x: 가로, y: 세로
 void gotoxy(int x, int y) {
     printf("\033[%d;%df", y, x);
 }
 
-// 로딩 모션
-void LoadSpin(int file_size, char* plusText) {
+// 로딩 이펙트
+void LoadSpin(int totalSpeed, char* plusText) {
     printf(WHITE);
     int download_speed = 10;
-    float total_time = (float)file_size / download_speed + 1;
+    float total_time = (float)totalSpeed / download_speed + 1;
 
     for (int i = 0; i < (int)total_time; i++) {
         int current_size = i * download_speed;
-        float ratio = (float)current_size / file_size;
+        float ratio = (float)current_size / totalSpeed;
         float percent = ratio * 100;
 
         const char* cursor = "|/-\\";
@@ -48,12 +43,6 @@ void LoadSpin(int file_size, char* plusText) {
         fflush(stdout);
         usleep(100000);
     }
-}
-
-// 프롬프트 청소
-void Clear(void) {
-    gotoxy(1, 1);
-    printf(WHITE "\033[2J\033[H");
 }
 
 // 요소가 배열 안에 요소에 해당하는 지 확인
@@ -68,6 +57,7 @@ bool isArray(char value, char array[]) {
     return false;
 }
 
+// 텍스트 사라짐 효과
 void disappearText(char* text) {
     int text_length = strlen(text); // 텍스트의 길이
 
@@ -78,7 +68,6 @@ void disappearText(char* text) {
         printf("\033[%dm", color_code); // 색상 설정
         gotoxy(15, 4);
         for (int j = 0; j < text_length; j++) {
-            
             printf("%c", text[j]); // 텍스트 출력
             fflush(stdout); // 출력 버퍼 비우기
             usleep(100000); // 0.1초 대기

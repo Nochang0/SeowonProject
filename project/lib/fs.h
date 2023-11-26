@@ -4,14 +4,15 @@
 // 기본 라이브러리
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 // 함수 목록
 bool saveFile(const char* filename, const char* data);	// 지정한 경로에 받은 데이터를 파일에 저장합니다.
 char* loadFile(const char* filename);					// 지정한 경로에 파일 데이터를 출력합니다.
-    
 
-// 가계부 데이터 저장 함수
+
+// 파일 데이터 저장 함수
 bool saveFile(const char* filename, const char* data) {
     // 파일 열기
     FILE *file = fopen(filename, "w");
@@ -35,7 +36,7 @@ bool saveFile(const char* filename, const char* data) {
 }
 
 
-// 가계부 파일 문자열 리턴 함수
+// 파일 데이터 리턴 함수
 char* loadFile(const char* filename) {
     // 파일 열기
     FILE *file = fopen(filename, "r");
