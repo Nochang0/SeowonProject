@@ -7,12 +7,13 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdbool.h>
-#define WHITE   		"\x1b[0m"
+#define WHITE   	"\x1b[0m"
 
+void Clear(void); 
 char* getDate(void);
 void gotoxy(int x, int y);
 void LoadSpin(int file_size, char* plusText);
-bool isArray(char value, char array[], int size);
+bool isArray(char value, char array[]);
 void disappearText(char* text);
 
 
@@ -49,8 +50,16 @@ void LoadSpin(int file_size, char* plusText) {
     }
 }
 
+// 프롬프트 청소
+void Clear(void) {
+    gotoxy(1, 1);
+    printf(WHITE "\033[2J\033[H");
+}
+
 // 요소가 배열 안에 요소에 해당하는 지 확인
-bool isArray(char value, char array[], int size) {
+bool isArray(char value, char array[]) {
+    int size = sizeof(array) / sizeof(array[0]);
+    
     for (int i = 0; i < size; i++) {
         if (array[i] == value) {
             return true;
