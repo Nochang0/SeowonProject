@@ -9,7 +9,7 @@
 #include <json-c/json.h>
 
 // 커스텀 라이브러리
-#include "../lib/fs.h"
+#include "../../lib/back/fs.h"
 
 // 매크로 변수
 #define INCOME_FILE_PATH "./db/income.json"

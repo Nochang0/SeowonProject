@@ -2,7 +2,7 @@
 * 프로그램 내용: struct을 이용해 문자열 5개를 저장하고, 사전순으로 정렬하는 함수를 따로 만들어 정렬한다. (창작 문제)
 * 개발자: 이호현 (202311437)
 */
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,20 +10,21 @@
 
 typedef struct dictionary
 {
-	char str[5][SIZE];											//문자열 5개 저장할 변수
-}dictionary;
+	char str[5][SIZE];											// 문자열 5개 저장할 변수
+} dictionary;
 
-dictionary dictionary_str;										//전역 변수 선언
+dictionary dictionary_str;										// 전역 변수 선언
 
-void dictionary_order();										//사전 정렬 함수 선언
+void dictionary_order();										// 사전 정렬 함수 선언
+
 int main(void)
 {
-	for (int i = 0; i < 5; i++) {								//문자열 5개 입력
+	for (int i = 0; i < 5; i++) {								// 문자열 5개 입력
 		printf("사전순으로 정렬할 문자열을 입력하시오 : ");
 		scanf("%s", dictionary_str.str[i]);
 	}
 
-	dictionary_order();				
+	dictionary_order();				                            //문자열 5개 정렬할 함수
 	
 	for (int i = 0; i < 5; i++) {								//정렬한 문자열 5개 출력
 		printf("%s ", dictionary_str.str[i]);

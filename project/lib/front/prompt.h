@@ -7,10 +7,10 @@
 #include <stdbool.h>
 
 // 커스텀 라이브러리
-#include "../lib/fs.h"
-#include "../lib/ui.h"
-#include "../lib/util.h"
-#include "../lib/data_manager.h"
+#include "../../lib/back/fs.h"
+#include "../../lib/front/ui.h"
+#include "../../lib/util.h"
+#include "../../lib/back/data_manager.h"
 
 // 입력바 높이 변수들 (UI)
 static const int eraseWidth = 40;   // 입력바 입력위치 청소할 길이
@@ -20,7 +20,7 @@ static const int SpendHeight = 16;  // 지출메뉴 입력바 높이
 static const int plusHeight = 13;   // 내역추가 관련 입력바 높이 (plus~ 함수)
 static bool clearChar = false;      // 메인메뉴 개행문자('\n') 제거 제어변수
 
-// UI 효과 관련 함수
+// UI 효과 관련 함수 (Util)
 static void loadScene(int height);  // 입력 엔터 후 로딩 효과
 static void allInputScene(void);    // 내역추가 관련 저장 알림 효과 (plus~ 함수)
 
@@ -41,7 +41,7 @@ char showIncomeList(void);          // 1-2: 수입내역 출력
 char showSpendList(void);           // 2-2: 지출내역 출력
 char showSpendPromiseList(void);    // 지출 예약내역 출력
 
-// 내역 검색 및 출력 함수
+// 내역 검색결과 출력 함수
 char findIncomeList(void);          // 3-1: 수입내역 검색 및 출력 (날짜, 카테고리)
 char findSpendList(void);           // 3-2: 지출내역 검색 및 출력 (날짜, 카테고리)
 

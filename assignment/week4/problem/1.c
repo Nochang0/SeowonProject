@@ -1,3 +1,4 @@
+
 /*
 * 프로그램 내용: 4주차 팀별과제 1번
 * 개발자: 정희태 (202011474)
@@ -5,64 +6,92 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <math.h>
 
-// 사람 구조체 정의
-struct Person {
-    char name[50];
-    int height;  // 키 (cm)
-    int weight;  // 몸무게 (kg)
-    float bmi;   // BMI 지수
+// 열거형을 사용하여 도형의 종류를 정의
+enum Shapetype {
+    TRIANGLE,
+    RECTANGLE,
+    CIRCLE
 };
 
-// 함수 선언
-struct Person cal_max_BMI(struct Person *people, int size);
+// 공용체를 사용하여 도형의 데이터를 저장
+union Shapedata {
+    struct {
+        double base;
+        double height;
+    } triangle;
+
+    struct {
+        double width;
+        double height;
+    } rectangle;
+
+    struct {
+        double radius; // 반지름
+    } circle;
+};
+
+// 구조체를 사용하여 도형을 표현
+struct Shape {
+    enum Shapetype type;
+    union Shapedata data;
+};
+
+// 도형의 면적을 계산하는 함수
+double calculate(struct Shape *shape) {
+    switch (shape->type) {
+        case TRIANGLE:
+            return 0.5 * shape->data.triangle.base * shape->data.triangle.height;
+
+        case RECTANGLE:
+            return shape->data.rectangle.width * shape->data.rectangle.height;
+
+        case CIRCLE:
+            return M_PI * pow(shape->data.circle.radius, 2);
+
+        default:
+            return 0.0; // 알 수 없는 도형 종류일 경우 0을 반환
+    }
+}
 
 int main() {
-    srand(time(NULL)); // 무작위 수 생성을 위한 시드 설정
+    // 사용자로부터 도형의 종류 입력 받기
+    printf("도형의 종류를 선택하세요 (0: 삼각형, 1: 사각형, 2: 원): ");
+    int shapetype;
+    scanf("%d", &shapetype);
 
-    int numPeople = 5;
-    struct Person people[numPeople];
+    // 도형의 데이터 입력 받기
+    struct Shape shape;
+    shape.type = (enum Shapetype)shapetype;
 
-    // 사용자로부터 이름 입력 받기
-    for (int i = 0; i < numPeople; ++i) {
-        printf("Enter the name of person %d: ", i + 1);
-        scanf("%s", people[i].name);
+    switch (shape.type) {
+        case TRIANGLE:
+            printf("삼각형의 밑변과 높이를 입력하세요: ");
+            scanf("%lf %lf", &shape.data.triangle.base, &shape.data.triangle.height);
+            break;
 
-        // 무작위로 키와 몸무게 생성 (160~180cm, 50~90kg)
-        people[i].height = rand() % 21 + 160;
-        people[i].weight = rand() % 41 + 50;
+        case RECTANGLE:
+            printf("사각형의 가로와 세로를 입력하세요: ");
+            scanf("%lf %lf", &shape.data.rectangle.width, &shape.data.rectangle.height);
+            break;
 
-        // BMI 계산
-        float heightInMeters = (float)people[i].height / 100;
-        people[i].bmi = (float)people[i].weight / (heightInMeters * heightInMeters);
+        case CIRCLE:
+            printf("원의 반지름을 입력하세요: ");
+            scanf("%lf", &shape.data.circle.radius);
+            break;
+
+        default:
+            printf("잘못된 도형 종류입니다.\n");
+            return 1;
     }
 
-    // BMI가 가장 높은 사람의 정보 출력
-    struct Person maxBMIInfo = cal_max_BMI(people, numPeople);
-    printf("\nPerson with the highest BMI:\n");
-    printf("Name: %s\n", maxBMIInfo.name);
-    printf("Height: %d cm\n", maxBMIInfo.height);
-    printf("Weight: %d kg\n", maxBMIInfo.weight);
-    printf("BMI: %.2f\n", maxBMIInfo.bmi);
+    // 도형의 면적 계산 및 출력
+    double area = calculate(&shape);
+    printf("도형의 면적: %lf\n", area);
 
     return 0;
-}
-
-// BMI가 가장 높은 사람의 정보를 찾는 함수
-struct Person cal_max_BMI(struct Person *people, int size) {
-    struct Person maxBMI = people[0];
-
-    for (int i = 1; i < size; ++i) {
-        if (people[i].bmi > maxBMI.bmi) {
-            maxBMI = people[i];
-        }
-    }
-
-    return maxBMI;
-}
-
+}																																									
 
 
 

@@ -8,7 +8,7 @@
 #define LIGHT_GREEN 	"\033[1;32m"
 #define YELLOW  		"\x1b[33m"
 #define BLUE    		"\x1b[34m"
-#define LIGHT_BLUE		"\033[94m"
+#define LIGHT_YELLOW	"\x1b[93;1m"
 #define MAGENTA 		"\x1b[35m"
 #define CYAN    		"\x1b[36m"
 #define LIGHT_CYAN		"\033[96m"
@@ -18,7 +18,8 @@
 #include <stdio.h>
 
 // 커스텀 라이브러리
-#include "../lib/util.h"
+#include "../../lib/util.h"
+#include "../../lib/back/data_manager.h"
 
 // UI 장면 함수들
 void Splash_Screen(void);                       // 스플래시 이미지 (시작 로딩창)
@@ -46,7 +47,7 @@ void setupSpendLimitScene(void);
 void searchIncomeScene(void);                   // 수입내역 검색요소 선택 UI 화면
 void searchIncomeResultScene(char* searchData); // 수입내역 검색결과 보여주기 UI 화면
 
-void searchSpendScene(void)                     // 지출내역 검색요소 선택 UI 화면
+void searchSpendScene(void);                    // 지출내역 검색요소 선택 UI 화면
 void searchSpendResultScene(char* searchData);  // 지출내역 검색요소 선택 UI 화면
     
 // 나가기 및 경고 UI 화면
@@ -63,15 +64,15 @@ void Splash_Screen(void) {
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n");
 	printf("║                    팀 구성원                      ║\n");
-	printf("║  ·" LIGHT_CYAN "연승현 (202311420)" WHITE "   ╦   ·" LIGHT_CYAN "김지성 (202110343)" WHITE "    ║\n");
-	printf("║  ·" LIGHT_CYAN "정희태 (202011474)" WHITE "   ║   ·" LIGHT_CYAN "양혜성 (202311419)" WHITE "    ║\n");
-	printf("║  ·" LIGHT_CYAN "이호현 (202311437)" WHITE "   ║   ·" LIGHT_CYAN "이정호 (203311431)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_GREEN "연승현 (202311420)" WHITE "   ╦   ·" LIGHT_CYAN "김지성 (202110343)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_GREEN "정희태 (202011474)" WHITE "   ║   ·" LIGHT_CYAN "양혜성 (202311419)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_GREEN "이호현 (202311437)" WHITE "   ║   ·" LIGHT_CYAN "이정호 (203311431)" WHITE "    ║\n");
 	printf("║  ·" LIGHT_CYAN "김예은 (202010319)" WHITE "   ║   ·" LIGHT_CYAN "장서진 (202311825)" WHITE "    ║\n");
 	printf("║  ·" LIGHT_CYAN "홍정일 (202311447)" WHITE "   ║                          ║\n");
 	printf("╠════════════════════════╩══════════════════════════╣\n");
-	printf("║ Github: " LIGHT_GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
+	printf("║ Github: " GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
-	LoadSpin(100, "");
+	LoadSpin(250, "");
 }
 
 
@@ -119,7 +120,7 @@ void spendMenuScene(void) {
 	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n");
-    printf("║"BLUE " %s   " WHITE "║\n", notice);
+    printf("║"LIGHT_YELLOW " %s   " WHITE "║\n", notice);
     printf("╠═══════════════════════════════════════════════════╣\n");
     printf("║                   📒지출 메뉴                     ║\n");
     printf("║                                                   ║\n");
@@ -357,7 +358,21 @@ void ExitScene(void) {
     printf("║                                                   ║\n");
     disappearText("Thank You For Playing!");
     Clear();
-    exit(0);
+    
+    printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
+    printf("╠═══════════════════════════════════════════════════╣\n");
+	printf("║                    팀 구성원                      ║\n");
+	printf("║  ·" LIGHT_CYAN "연승현 (202311420)" WHITE "   ╦   ·" LIGHT_CYAN "김지성 (202110343)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_CYAN "정희태 (202011474)" WHITE "   ║   ·" LIGHT_CYAN "양혜성 (202311419)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_CYAN "이호현 (202311437)" WHITE "   ║   ·" LIGHT_CYAN "이정호 (203311431)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_CYAN "김예은 (202010319)" WHITE "   ║   ·" LIGHT_CYAN "장서진 (202311825)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_CYAN "홍정일 (202311447)" WHITE "   ║                          ║\n");
+	printf("╠════════════════════════╩══════════════════════════╣\n");
+	printf("║ Github: " LIGHT_GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
+    printf("╚═══════════════════════════════════════════════════╝\n");
+    
+    exit(0);	// 시스템 종료
 }
 
 
