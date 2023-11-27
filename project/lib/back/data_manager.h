@@ -46,7 +46,7 @@ bool addSpendList(char* HistoryData);				                // 지출 내역 추가
 bool setSpendLimit(char* spendPrice);				                // 지출 한도 설정
 bool addSpendPromise(char* HistoryData);			                // 지출 예약내역 추가
 
-// 출력 관련 함수 (UI, Scene관련 함수들)
+// 출력 관련 함수 (UI, ~Scene관련 함수들)
 char* getSpendLimit(void);								            // 지출 내역 현황을 출력 (UI)
 struct ShowInfo getIncomeList(void);                                // 수입 내역과 줄바꿈 구조체 반환 (UI)
 struct ShowInfo getSpendList(void);                                 // 지출 내역과 줄바꿈 구조체 반환 (UI)

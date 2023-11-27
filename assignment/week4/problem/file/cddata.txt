@@ -1,0 +1,3 @@
+METEORA			 LinkinPark	2003	13000	27
+TRUE			 L'Arc~en~Ciel	2004	12700	15
+alligater		 MonstaX	2000	17000	17	

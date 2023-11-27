@@ -1,5 +1,5 @@
 /*
-* 프로그램 내용:  (창작 문제)
+* 프로그램 내용:학생들의 정보들을 출력하는 시스템 (창작 문제)
 * 개발자: 정희태 (202011474)
 */
 
@@ -7,13 +7,13 @@
 
 // 학생 구조체 정의
 struct student {
-    char name[50];
-    int studentID;
-    float grade;
+    char name[50]; //학생 이름
+    int studentID; //학생 아이디
+    float grade; //학생 성적
 };
 
 int main() {
-    int numstudents;
+    int numstudents;// 학생 수 변수 선언
 
     printf("학생 명 수를  입력해주세요: ");
     scanf("%d", &numstudents);
@@ -25,23 +25,23 @@ int main() {
     for (int i = 0; i < numstudents; ++i) {
         printf("\n학생 정보를 입력해주세요. %d:\n", i + 1);
 
-        printf("Name: ");
+        printf("이름 : ");
         scanf("%s", students[i].name);
 
-        printf("Student ID: ");
+        printf("아이디 : ");
         scanf("%d", &students[i].studentID);
 
-        printf("Grade: ");
+        printf("성적 : ");
         scanf("%f", &students[i].grade);
     }
 
     // 입력 받은 학생 정보 출력
-    printf("\nStudent Information:\n");
+    printf("\n학생들의 정보 :\n");
     for (int i = 0; i < numstudents; ++i) {
-        printf("\nStudent %d\n", i + 1);
-        printf("Name: %s\n", students[i].name);
-        printf("Student ID: %d\n", students[i].studentID);
-        printf("Grade: %.2f\n", students[i].grade);
+        printf("\n학생 %d\n", i + 1);
+        printf("학생 이름 : %s\n", students[i].name);
+        printf("학생 아이디 : %d\n", students[i].studentID);
+        printf("성적 : %.2f\n", students[i].grade);
     }
 
     return 0;

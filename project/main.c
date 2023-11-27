@@ -130,7 +130,7 @@ static void Move(int menuNum, char moveNum) {
         }
         
     } else {
-        return ExitScene();     // 종료 (q)
+        return ExitScene(); // 종료 (q)
     }
 }
 
