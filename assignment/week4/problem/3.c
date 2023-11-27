@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 typedef struct {
-    char name[100]; 
+    char name[100]; // 이름
     int score;      // 성적 점수
     int rank;       // 등수
 } Student;
@@ -33,7 +33,7 @@ int main() {
     Student students[100];   // 최대 100명의 학생
     int numStudents = 0;
 
-    file = fopen("scores.txt", "r");   // 파일 열기
+    file = fopen("./file/scores.txt", "r");   // 파일 열기
     if (file == NULL) {
         printf("파일을 열 수 없습니다.");   // 파일을 열수 없을때 출력
         return 1;

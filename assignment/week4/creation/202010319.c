@@ -73,7 +73,7 @@ void displayMenu() {
 
 // 파일에서 책 데이터 읽어오는 함수
 void readBookData(char titles[MAX_BOOKS][50], char authors[MAX_BOOKS][50], int publication_years[MAX_BOOKS], int prices[MAX_BOOKS], int stock_quantities[MAX_BOOKS], int* bookCount) {
-    FILE* file = fopen("bookdata.txt", "r");
+    FILE* file = fopen("./file/bookdata.txt", "r");
 
     if (file == NULL) {
         printf("파일 열기 오류. 프로그램을 종료합니다. \n");
@@ -130,7 +130,7 @@ void updateStock(char titles[MAX_BOOKS][100], int stock_quantities[MAX_BOOKS], i
 
 // 변경된 책 정보를 파일에 저장하는 함수
 void saveToFile(char titles[MAX_BOOKS][50], char authors[MAX_BOOKS][50], int publication_years[MAX_BOOKS], int prices[MAX_BOOKS], int stock_quantities[MAX_BOOKS], int bookCount) {
-    FILE* file = fopen("bookdata.txt", "w");
+    FILE* file = fopen("./file/bookdata.txt", "w");
 
     if (file == NULL) {
         printf("파일 열기에 실패했습니다. 프로그램을 종료합니다.\n");
