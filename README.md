@@ -155,7 +155,7 @@
         ┃	┣  📂 lib
 		┃	┃	┣  📂 front (UI 관련 라이브러리)
 		┃	┃	┃   ┣ 📜 ui.h (UI 화면)
-        ┃   ┃   ┃   ┗ 📜 prompt.h (UI + Task 통합)
+		┃	┃	┃   ┗ 📜 prompt.h (UI + Task 통합)
         ┃   ┃   ┃
 		┃	┃	┣  📂 back (실제 기능 관련 라이브러리) 
 		┃	┃	┃   ┣ 📜 fs.h (파일 입출력)
