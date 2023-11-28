@@ -188,6 +188,7 @@
 
     * **표준 라이브러리(Standard Library)**
         * `stdio.h`
+        * `unistd.h`
         * `string.h`
         * `stdlib.h`
         * `stdbool.h`
@@ -195,8 +196,10 @@
         
     * **사용자 정의 라이브러리(User-defined Library)**
     	* `fs.h`
-        * `data_manager.h`
+        * `ui.h`
+        * `util.h`
         * `prompt.h`
+        * `data_manager.h`
         
 * **라이브러리 세부 소개 및 기능**
 
@@ -208,7 +211,7 @@
         | stdlib.h  		| 동적 메모리 관리, 난수 생성 등 관련 함수들을 정의하고 선언하는 라이브러리   |         
         | stdbool.h 		| 불리언(Boolean) 타입과 관련된 상수들을 정의하는 라이브러리 (true, false) | 
         | json-c/json.h 	| JSON(JavaScript Object Notation) 데이터를 처리하기 위한 라이브러리     |
-        | fs.h   			| 파일 입출력 관련 라이브러리      										| 
+        | fs.h   			| 파일 입출력 관련 라이브러리      										|
         | data_manager.h  	| 데이터 수정 및 검색 라이브러리   									   | 
         | prompt.h        	| UI 관련 라이브러리     		   									   |
         <br>
