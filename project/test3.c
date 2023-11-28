@@ -1,65 +1,47 @@
-// 기본 라이브러리
 #include <stdio.h>
-#include <string.h>
 #include <stdbool.h>
 #include <json-c/json.h>
 
-// 커스텀 라이브러리
-#include "./lib/data_manager.h"
-#include "./lib/fs.h"
-#include "./lib/util.h"
-#include "./lib/ui.h"
+bool getAmountFromJson(const char* jsonData, int* amount) {
+    struct json_object* root;
+    struct json_object* amountObj;
 
-// #include "./lib/ui.h"
-// #include "./lib/prompt.h"
-// #include "./lib/util.h"
+    // JSON 데이터 파싱
+    root = json_tokener_parse(jsonData);
 
-#define INCOME_FILE_PATH "./db/income.json"
-#define SPEND_FILE_PATH "./db/spend.json"
-#define SPEND_LIMIT_FILE_PATH "./db/spendLimit.txt"
-#define SPEND_PROMISE_FILE_PATH "./db/spendPromise.json"
-#define RECENT_LISTID_FILE_PATH "./db/uniqueNum.txt"
+    // "금액" 객체 가져오기
+    if (json_object_object_get_ex(root, "금액", &amountObj)) {
+        // "금액" 객체의 값 가져오기
+        double plusMoney = json_object_get_double(amountObj);
 
-// int main(void) {
-// 	Splash_Screen();
-// 	int move = mainMenuScene();
-//     printf("%d\n", move[0]);
-//     // inputBar(move);
-//     return 0;
-// }
+        // "plusMoney" 값을 int로 변환하여 "amount"에 할당
+        *amount = (int)plusMoney;
 
+        // 메모리 누수 방지
+        json_object_put(root);
 
+        return true;
+    }
+
+    // 메모리 누수 방지
+    json_object_put(root);
+
+    return false;
+}
 
 int main() {
-	// printf("╔═══════════════════════════════════════════════════╗\n");
-	// printf("●               📝 수입 내역 등록                  ●\n");
-	// printf("╠═══════════════════════════════════════════════════╣\n");
-	// printf("║  📅날짜:                                           ║\n");
-	// printf("║  💰금액:                                             ║\n");
-	// printf("║  🛍️수입처:                                          ║\n");
-	// printf("║  🧾메모:                                             ║\n");
-	// printf("║  📅카테고리:                                        ║\n");
-	// printf("╚═══════════════════════════════════════════════════╝\n");
-	// char* dd = getDate();
-	// printf("%s\n", dd);
-    char moveNum;
-    bool moveTrue;
-    char menuArr[] = { '1', '2', 'z', 'q' };		// 입력 값 배열   
-    // inputBarScene(Fourheight);
-    printf("ddd");
-    printf("\n\n\ncccc");
-    printf(LIGHT_GREEN);
-    gotoxy(11, 2);
+    const char* jsonData = "{\"날짜\":\"2023-12-04\",\"금액\":\"1000\",\"수입처\":\"은행\",\"메모\":\"없음\",\"카테고리\":\"저금\"}";
+    int amount;
 
-    scanf("%c", &moveNum);
-
-    // moveTrue = isArray(moveNum, menuArr);
-    if (isArray(moveNum, menuArr)) {
-        printf("성공!!", moveNum);
-    } else{
-        printf("fuck");
+    if (getAmountFromJson(jsonData, &amount)) {
+        printf("금액: %d\n", amount);
+    } else {
+        printf("금액을 가져올 수 없습니다.\n");
     }
+
+    return 0;
 }
+
 
 
 // cd /workspace/SeowonCProject/project/ && gcc ./test3.c -o /tmp/a.out -lm -ljson-c && clear && /tmp/a.out

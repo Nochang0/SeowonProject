@@ -107,7 +107,7 @@ void displayBookList(char titles[MAX_BOOKS][50], char authors[MAX_BOOKS][50], in
 }
 
 // 재고를 업데이트하는 함수
-void updateStock(char titles[MAX_BOOKS][100], int stock_quantities[MAX_BOOKS], int bookCount) {
+void updateStock(char titles[MAX_BOOKS][50], int stock_quantities[MAX_BOOKS], int bookCount) {
     char searchTitle[100];       // 제목 검색
     int newStockQuantity;       // 새로운 재고 수량
 
@@ -123,7 +123,7 @@ void updateStock(char titles[MAX_BOOKS][100], int stock_quantities[MAX_BOOKS], i
             printf("재고수량이 성공적으로 업데이트 되었습니다.\n");
             return;
         }
-    }
+}
 
     printf("책을 찾을 수 없습니다. 수량이 업데이트 되지 않았습니다.\n");
 }

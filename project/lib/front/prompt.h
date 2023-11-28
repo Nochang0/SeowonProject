@@ -14,9 +14,9 @@
 
 // 입력바 높이 변수들 (UI)
 static const int eraseWidth = 40;   // 입력바 입력위치 청소할 길이
-static const int FourHeight = 12;   // 메인, 수입메뉴 입력바 높이
-static const int SearchHeight = 14; // 검색메뉴 입력바 높이
-static const int SpendHeight = 16;  // 지출메뉴 입력바 높이
+static const int FourHeight = 14;   // 메인, 수입메뉴 입력바 높이
+static const int SearchHeight = 16; // 검색메뉴 입력바 높이
+static const int SpendHeight = 18;  // 지출메뉴 입력바 높이
 static const int plusHeight = 13;   // 내역추가 관련 입력바 높이 (plus~ 함수)
 static bool clearChar = false;      // 메인메뉴 개행문자('\n') 제거 제어변수
 
@@ -54,7 +54,7 @@ char updateSpendLimit(void);        // 2-3: 지출한도 금액 설정
 char selectMainMenu(void) {
     mainMenuScene();				// 메인 메뉴 UI 장면
     char moveNum;					// 이동 기호 입력
-    char menuArr[] = { '1', '2', '3', 'q' };		// 입력 값 배열   
+    char menuArr[] = { '1', '2', '3', 'q' };	// 입력 값 배열   
     
     gotoxy(11, FourHeight);
     printf(LIGHT_GREEN);
@@ -217,6 +217,9 @@ char plusIncomeList(void) {
     gotoxy(1, plusHeight);
     printf(WHITE "║ ▶️ 입력:              " LIGHT_GREEN);
     
+    // 소지금 업데이트
+    updateMoney((int)atoi(Incomedata.Amount), true);
+    
     // JSON으로 문자열 데이터 재구성
     char* listjson = createIncomeInfo(Incomedata);
     
@@ -288,6 +291,9 @@ char plusSpendList(void) {
     LoadSpin(50, "║ ");
     gotoxy(1, plusHeight);
     printf(WHITE "║ ▶️ 입력:              " LIGHT_GREEN);
+    
+    // 소지금 업데이트
+    updateMoney((int)(atoi(Spenddata.Amount)), false);
     
     // JSON으로 문자열 데이터 재구성
     char* listjson = createIncomeInfo(Spenddata);

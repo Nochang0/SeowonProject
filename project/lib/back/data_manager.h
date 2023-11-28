@@ -12,11 +12,12 @@
 #include "../../lib/back/fs.h"
 
 // 매크로 변수
-#define INCOME_FILE_PATH "./db/income.json"
-#define SPEND_FILE_PATH "./db/spend.json"
-#define SPEND_LIMIT_FILE_PATH "./db/spendLimit.txt"
-#define SPEND_PROMISE_FILE_PATH "./db/spendPromise.json"
-#define RECENT_LISTID_FILE_PATH "./db/uniqueNum.txt"
+#define INCOME_FILE_PATH "./db/income.json"                 // 수입 내역 파일
+#define SPEND_FILE_PATH "./db/spend.json"                   // 지출 내역 파일
+#define SPEND_LIMIT_FILE_PATH "./db/spendLimit.txt"         // 지출 한도 파일
+#define SPEND_PROMISE_FILE_PATH "./db/spendPromise.json"    // 지출 예약 내역 파일
+#define RECENT_LISTID_FILE_PATH "./db/uniqueNum.txt"        // 내역 고유번호 파일
+#define RECENT_MONEY_FILE_PATH "./db/money.txt"             // 현재 내 소지금 파일
 
 // 내역 추가 데이터 구조체 (수입|지출)
 struct InputInfo {
@@ -27,7 +28,7 @@ struct InputInfo {
     char Tag[100];      // 카테고리
 };
 
-// 내역 출력 UI 관련 구조체
+// 내역 출력 UI 관련 구조체 (~Scene 함수)
 struct ShowInfo {
     int listHeight;     // 입력바 삽입 높이
     char* listData;     // 내역 데이터
@@ -35,6 +36,7 @@ struct ShowInfo {
 
 // 커스텀 함수 목록
 static bool updatelistId(char* listId); 							// 내역 고유번호를 업데이트
+bool updateMoney(int turnMoney, bool act);                          // 내 소지금을 업데이트
 
 // 변환 관련 함수
 char* createIncomeInfo(struct InputInfo Incomedata);                // 저장할 수입 데이터를 JSON 변환합니다.
@@ -48,21 +50,42 @@ bool addSpendPromise(char* HistoryData);			                // 지출 예약내�
 
 // 출력 관련 함수 (UI, ~Scene관련 함수들)
 char* getSpendLimit(void);								            // 지출 내역 현황을 출력 (UI)
-struct ShowInfo getIncomeList(void);                                // 수입 내역과 줄바꿈 구조체 반환 (UI)
-struct ShowInfo getSpendList(void);                                 // 지출 내역과 줄바꿈 구조체 반환 (UI)
-struct ShowInfo getSpendPromiseList(void);                          // 지출 예약내역과 줄바꿈 구조체 반환 (UI)
+struct ShowInfo getIncomeList(void);                                // 수입 내역과 줄바꿈 상수 구조체 반환 (UI)
+struct ShowInfo getSpendList(void);                                 // 지출 내역과 줄바꿈 상수 구조체 반환 (UI)
+struct ShowInfo getSpendPromiseList(void);                          // 지출 예약내역과 줄바꿈 상수 구조체 반환 (UI)
 struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate);	// 수입 및 지출 내역의 날짜 검색결과 반환 (UI)
 struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag);	// 수입 및 지출 내역의 카테고리 검색결과 반환 (UI)
 
     
     
-// 내역 고유번호 업데이트 및 출력 (RETURN: 새로운 내역 고유번호)
+// 내역 고유번호 업데이트 (RETURN: true)
 static bool updatelistId(char* listId) {
-    char PushlistId[999];							// 저장할 내역 고유번호
+    char PushlistId[100];							// 저장할 내역 고유번호
     int NewlistId = (int)(atoi(listId) + 1);		// 새로운 내역 고유번호
     sprintf(PushlistId, "%d", NewlistId);			// 문자열 변경
     
     saveFile(RECENT_LISTID_FILE_PATH, PushlistId);	// 내역 고유번호 파일 저장
+    return true;
+}
+
+// 현재 내 소지금 업데이트 (RETURN: true)
+bool updateMoney(int turnMoney, bool act) {
+    char* Money = loadFile(RECENT_MONEY_FILE_PATH);   // 현재 소지금
+    char* PushMoney = malloc(1000);      // 저장할 소지금
+    
+    // 수입
+    if (act) {
+        int NewMoney = (int)(atoi(Money) + turnMoney);		// 수입 소지금 업데이트
+        sprintf(PushMoney, "%d", NewMoney);		
+    }
+    // 지출
+    else {
+        int NewMoney = (int)(atoi(Money) - turnMoney);		// 지출 소지금 업데이트
+        sprintf(PushMoney, "%d", NewMoney);			
+    }
+    
+    saveFile(RECENT_MONEY_FILE_PATH, PushMoney);	// 내역 고유번호 파일 저장
+    free(PushMoney);
     return true;
 }
 
@@ -71,6 +94,7 @@ bool addIncomeList(char* HistoryData) {
     struct json_object* root;           				// 전체 리스트 내역 딕셔너리
     struct json_object* typeList;       				// 수입 | 지출내역
     struct json_object* listInfo;       				// 내역 세부 데이터
+    struct json_object* amountObj;       				// 금액을 추출할 내역 객체
     char* listId = loadFile(RECENT_LISTID_FILE_PATH);	// 내역 고유번호
     
     // 수입 내역 데이터 불러오기
@@ -93,7 +117,9 @@ bool addIncomeList(char* HistoryData) {
     
     // 메모리 누수 방지
     json_object_put(root);
-    updatelistId(listId);
+    
+    // 내역 고유번호 업데이트
+    updatelistId(listId);           
     return true;
 }
 
@@ -102,6 +128,7 @@ bool addSpendList(char* HistoryData) {
     struct json_object* root;           				// 전체 리스트 내역
     struct json_object* typeList;       				// 수입 | 지출내역
     struct json_object* listInfo;       				// 내역 세부 데이터
+    struct json_object* amountObj;       				// 금액을 추출할 내역 객체
     char* listId = loadFile(RECENT_LISTID_FILE_PATH);	// 내역 고유번호
     
     // 지출 내역 데이터 불러오기
@@ -124,6 +151,8 @@ bool addSpendList(char* HistoryData) {
     
     // 메모리 누수 방지
     json_object_put(root);
+    
+    // 내역 고유번호 업데이트
     updatelistId(listId);
     return true;
 }

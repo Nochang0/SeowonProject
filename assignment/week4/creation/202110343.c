@@ -12,7 +12,6 @@ int main() {
     printf("변수의 값: %d\n", *ptr);
 
     *ptr = 20;
-
     printf("변경된 변수의 값 : %d\n", num);
 
     return 0;

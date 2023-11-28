@@ -9,7 +9,7 @@
 struct student {
     char name[50]; //학생 이름
     int studentID; //학생 아이디
-    float grade; //학생 성적
+    int grade; //학생 성적
 };
 
 int main() {
@@ -32,7 +32,7 @@ int main() {
         scanf("%d", &students[i].studentID);
 
         printf("성적 : ");
-        scanf("%f", &students[i].grade);
+        scanf("%d", &students[i].grade);
     }
 
     // 입력 받은 학생 정보 출력
@@ -41,7 +41,7 @@ int main() {
         printf("\n학생 %d\n", i + 1);
         printf("학생 이름 : %s\n", students[i].name);
         printf("학생 아이디 : %d\n", students[i].studentID);
-        printf("성적 : %.2f\n", students[i].grade);
+        printf("성적 : %d\n", students[i].grade);
     }
 
     return 0;
