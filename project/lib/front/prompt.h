@@ -133,7 +133,6 @@ char selectSpendMenu(void) {
             return moveNum;
         } else {
             WarningScene(SpendHeight+2);
-
             gotoxy(eraseWidth, SpendHeight);
             printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
             gotoxy(1, SpendHeight);
