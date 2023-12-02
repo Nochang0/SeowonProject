@@ -218,9 +218,9 @@
         | prompt.h        	| UI + 데이터 처리(주요기능)를 합친 핵심 라이브러리(커스텀)     		   		|
         | util.h        	| UI 및 데이터 처리 라이브러리에서 활용 가능한 다목적 함수 모음 라이브러리(커스텀) |
         <br>
-        
-    * **커스텀 라이브러리 세부 내용**
-<hr>
+<hr>        
+* **사용자 지정 라이브러리 세부 내용**
+
         
 * **fs.h**
         
@@ -233,14 +233,22 @@
         
 | 함수(Function) | 역할(Role) | 인수(Argument) | 출력 값(Return Value) |
 |:--------------:|:---------:|:-------------:|:--------------------:|
-| int updatelistId(char* listId) | 내역 고유번호를 업데이트 및 출력 | 내역 고유번호(char) | 수정된 수입내역(char) |
-| char* addIncomeList(char* jsonData, char* HistoryData) | 수입 내역을 추가 | 수입내역(char), 새로운 추가내역(char) | 수정된 수입내역(char) |
-| char* addSpendList(char* jsonData, char* HistoryData) | 지출 내역을 추가 | 지출내역(char), 새로운 추가내역(char) | 수정된 지출내역(char) |
-| int setSpendLimit(char* jsonData, char* spendPrice) | 지출 한도를 설정 | 지출내역(char), 지출 한도액(int) | 지출 한도액 - 총지출액(int) |
-| int getSpendLimit(char* jsonData) | 지출 내역 현황을 출력 | 지출내역(char), 지출 예약 내역(char) | 지출 한도액 - 총지출액(int) |
-| char* addSpendPromise(char* jsonData, char* HistoryData) | 지출 예약 내역을 추가 | 수입내역(char), 새로운 내역(char) | 수정된 지출 예약 내역(char) |
-| char* findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 내역을 날짜로 검색 | 지출내역(char), 날짜(char) | 일치 내역들(char) |
-| char* findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 내역을 카테고리로 검색 | 지출내역(char), 카테고리(char) | 일치 내역들(char) |
+| static bool updatelistId(char* listId) | 내역 고유번호를 업데이트 | 내역 고유번호(char) | 성공 여부(bool) |
+| bool updateMoney(int turnMoney, bool act) | 내 소지금을 업데이트 | 바뀐 금액(int), 수입/지출(true/false, bool) | 성공 여부(bool) |
+| char* getSpendLimit(void) | 지출 현황 공지를 출력 | X | 지출 내역(char) |
+| char* createIncomeInfo(struct InputInfo Incomedata) | 수입 데이터를 JSON 변환 | 추가 내역 원본 데이터(struct InputInfo) | 내역 JSON 변환 데이터(char) |
+| char* createSpendInfo(struct InputInfo Incomedata) | 지출/예약 데이터를 JSON 변환 | 추가 내역 원본 데이터(struct InputInfo) | 내역 JSON 변환 데이터(char) |
+| bool addIncomeList(char* HistoryData) | 수입 내역을 추가 | 새로운 내역(char) | 성공 여부(bool) |
+| bool addSpendList(char* HistoryData) | 지출 내역을 추가 | 새로운 내역(char) | 성공 여부(bool) |
+| bool addSpendPromise(char* HistoryData) | 지출 예약 내역을 추가 | 새로운 내역(char) | 성공 여부(bool) |
+| bool setSpendLimit(char* HistoryData) | 지출 한도를 설정 | 지출 한도(char) | 성공 여부(bool) |
+| struct ShowInfo getIncomeList(void) | 수입 내역과 줄바꿈 상수 구조체 반환 | X | (수입 내역(char)+입력바 높이(int))(struct ShowInfo) |
+| struct ShowInfo getSpendList(void) | 지출 내역과 줄바꿈 상수 구조체 반환 | X | (지출 내역(char)+입력바 높이(int))(struct ShowInfo) |
+| struct ShowInfo getSpendPromiseList(void) | 지출 예약내역과 줄바꿈 상수 구조체 반환 | X | (지출 예약 내역(char)+입력바 높이(int))(struct ShowInfo) |
+| struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 카테고리 검색결과 반환 | 수입/지출 내역(char), 내역이름(char), 검색 카테고리(char) | 검색된 내역(char) |
+| struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 날짜 검색결과 반환 | 수입/지출 내역(char), 내역이름(char), 검색 날짜(char) | 검색된 내역(char) |
+
+
 
 
 

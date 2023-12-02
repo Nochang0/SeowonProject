@@ -45,11 +45,11 @@ char* createSpendInfo(struct InputInfo Spenddata);                  // 저장할
 // 추가 관련 함수 (prompt.h)
 bool addIncomeList(char* HistoryData);				                // 수입 내역 추가
 bool addSpendList(char* HistoryData);				                // 지출 내역 추가
-bool setSpendLimit(char* spendPrice);				                // 지출 한도 설정
 bool addSpendPromise(char* HistoryData);			                // 지출 예약내역 추가
+bool setSpendLimit(char* spendPrice);				                // 지출 한도 설정
 
 // 출력 관련 함수 (UI, ~Scene관련 함수들)
-char* getSpendLimit(void);								            // 지출 내역 현황을 출력 (UI)
+char* getSpendLimit(void);								            // 지출 현황 공지를 출력 (UI)
 struct ShowInfo getIncomeList(void);                                // 수입 내역과 줄바꿈 상수 구조체 반환 (UI)
 struct ShowInfo getSpendList(void);                                 // 지출 내역과 줄바꿈 상수 구조체 반환 (UI)
 struct ShowInfo getSpendPromiseList(void);                          // 지출 예약내역과 줄바꿈 상수 구조체 반환 (UI)
