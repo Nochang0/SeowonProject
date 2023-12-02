@@ -283,15 +283,15 @@
 | char selectIncomeMenu(void) | 수입메뉴 선택창 (1) | X | (내역 추가/출력)메뉴 선택 값(char) |
 | char selectSpendMenu(void) | 지출메뉴 선택창 (2) | X | (내역 추가/출력, 한도액 설정, 예약내역 추가)메뉴 선택 값(char) |
 | char selectSearchMenu(void) | 검색메뉴 선택창 (3) | X | (수입/지출 내역 날짜/카테고리 검색)메뉴 선택 값(char) |
-| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | X |
-| void plusSpendList(void) | 지출내역 추가 (2-1) | X | X |
-| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | X |
-| void showIncomeList(void) | 수입내역 출력 (1-2) | X | X |
-| void showSpendList(void) | 지출내역 출력 (2-2) | X | X |
-| void showSpendPromiseList(void) | 지출 예약내역 출력 | X | X |
-| void findIncomeList(void) | 수입내역 검색 및 출력 (날짜/카테고리, 3-1) | X | X |
-| void findSpendList(void) | 지출내역 검색 및 출력 (날짜/카테고리, 3-2) | X | X |
-| void updateSpendLimit(void) | 지출한도 금액 설정 (2-3) | X | X |
+| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void plusSpendList(void) | 지출내역 추가 (2-1) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void showIncomeList(void) | 수입내역 출력 (1-2) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void showSpendList(void) | 지출내역 출력 (2-2) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void showSpendPromiseList(void) | 지출 예약내역 출력 | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void findIncomeList(void) | 수입내역 검색 및 출력 (날짜/카테고리, 3-1) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void findSpendList(void) | 지출내역 검색 및 출력 (날짜/카테고리, 3-2) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void updateSpendLimit(void) | 지출한도 금액 설정 (2-3) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
 <hr>
 
 
