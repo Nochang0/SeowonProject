@@ -234,20 +234,20 @@
         
 | 함수(Function) | 역할(Role) | 인수(Argument) | 출력 값(Return Value) |
 |:--------------:|:---------:|:-------------:|:--------------------:|
-| static bool updatelistId(char* listId) | 내역 고유번호를 업데이트 | 내역 고유번호(char) | 성공 여부(bool) |
+| static bool updatelistId(char* listId) | 내역 고유번호를 업데이트 | 내역 고유번호(char*) | 성공 여부(bool) |
 | bool updateMoney(int turnMoney, bool act) | 내 소지금을 업데이트 | 바뀐 금액(int), 수입/지출(true/false, bool) | 성공 여부(bool) |
-| char* getSpendLimit(void) | 지출 현황 공지를 출력 | X | 지출 내역(char) |
-| char* createIncomeInfo(struct InputInfo Incomedata) | 수입 데이터를 JSON 변환 | 추가 내역 원본 데이터(struct InputInfo) | 내역 JSON 변환 데이터(char) |
-| char* createSpendInfo(struct InputInfo Incomedata) | 지출/예약 데이터를 JSON 변환 | 추가 내역 원본 데이터(struct InputInfo) | 내역 JSON 변환 데이터(char) |
-| bool addIncomeList(char* HistoryData) | 수입 내역을 추가 | 새로운 내역(char) | 성공 여부(bool) |
-| bool addSpendList(char* HistoryData) | 지출 내역을 추가 | 새로운 내역(char) | 성공 여부(bool) |
-| bool addSpendPromise(char* HistoryData) | 지출 예약 내역을 추가 | 새로운 내역(char) | 성공 여부(bool) |
-| bool setSpendLimit(char* HistoryData) | 지출 한도를 설정 | 지출 한도(char) | 성공 여부(bool) |
-| struct ShowInfo getIncomeList(void) | 수입 내역과 줄바꿈 상수 구조체 반환 | X | (수입 내역(char)+입력바 높이(int))(struct ShowInfo) |
-| struct ShowInfo getSpendList(void) | 지출 내역과 줄바꿈 상수 구조체 반환 | X | (지출 내역(char)+입력바 높이(int))(struct ShowInfo) |
-| struct ShowInfo getSpendPromiseList(void) | 지출 예약내역과 줄바꿈 상수 구조체 반환 | X | (지출 예약 내역(char)+입력바 높이(int))(struct ShowInfo) |
-| struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 카테고리 검색결과 반환 | 수입/지출 내역(char), 내역이름(char), 검색 카테고리(char) | 검색된 내역(char) |
-| struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 날짜 검색결과 반환 | 수입/지출 내역(char), 내역이름(char), 검색 날짜(char) | 검색된 내역(char) |
+| char* getSpendLimit(void) | 지출 현황 공지를 출력 | X | 지출 내역(char*) |
+| char* createIncomeInfo(struct InputInfo Incomedata) | 수입 데이터를 JSON 변환 | 추가 내역 원본 데이터(struct InputInfo) | 내역 JSON 변환 데이터(char*) |
+| char* createSpendInfo(struct InputInfo Incomedata) | 지출/예약 데이터를 JSON 변환 | 추가 내역 원본 데이터(struct InputInfo) | 내역 JSON 변환 데이터(char*) |
+| bool addIncomeList(char* HistoryData) | 수입 내역을 추가 | 새로운 내역(char*) | 성공 여부(bool) |
+| bool addSpendList(char* HistoryData) | 지출 내역을 추가 | 새로운 내역(char*) | 성공 여부(bool) |
+| bool addSpendPromise(char* HistoryData) | 지출 예약 내역을 추가 | 새로운 내역(char*) | 성공 여부(bool) |
+| bool setSpendLimit(char* HistoryData) | 지출 한도를 설정 | 지출 한도(char*) | 성공 여부(bool) |
+| struct ShowInfo getIncomeList(void) | 수입 내역과 줄바꿈 상수 구조체 반환 | X | (수입 내역(char*)+입력바 높이(int))(struct ShowInfo) |
+| struct ShowInfo getSpendList(void) | 지출 내역과 줄바꿈 상수 구조체 반환 | X | (지출 내역(char*)+입력바 높이(int))(struct ShowInfo) |
+| struct ShowInfo getSpendPromiseList(void) | 지출 예약내역과 줄바꿈 상수 구조체 반환 | X | (지출 예약 내역(char*)+입력바 높이(int))(struct ShowInfo) |
+| struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 카테고리 검색결과 반환 | 수입/지출 내역(char*), 내역이름(char*), 검색 카테고리(char*) | 검색된 내역(char*) |
+| struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 날짜 검색결과 반환 | 수입/지출 내역(char*), 내역이름(char*), 검색 날짜(char*) | 검색된 내역(char*) |
 
 <hr>
 
@@ -263,20 +263,36 @@
 | void plusIncomeScene(void) | 수입내역 추가 UI 화면 출력 | X | X |
 | void plusSpendScene(void) | 지출내역 추가 UI 화면 출력 | X | X |
 | void plusSpendPromiseScene(void) | 지출 예약내역 추가 UI 화면 출력 | X | X |
-| void lookIncomeScene(char* listData) | 수입내역 전체보기 UI 화면 출력 | 수입 내역(char) | X |
-| void lookSpendScene(char* listData) | 지출내역 전체보기 UI 화면 출력 | 지출 내역(char) | X |
-| void lookSpendPromiseScene(char* listData) | 지출 예약내역 전체보기 UI 화면 출력 | 지출 예약내역(char) | X |
+| void lookIncomeScene(char* listData) | 수입내역 전체보기 UI 화면 출력 | 수입 내역(char*) | X |
+| void lookSpendScene(char* listData) | 지출내역 전체보기 UI 화면 출력 | 지출 내역(char*) | X |
+| void lookSpendPromiseScene(char* listData) | 지출 예약내역 전체보기 UI 화면 출력 | 지출 예약내역(char*) | X |
 | void searchIncomeScene(void) | 수입내역 검색요소 선택 UI 화면 출력 | X | X |
-| void searchIncomeResultScene(char* searchData) | 수입내역 검색결과 보여주기 UI 화면 출력 | 검색된 내역(char) | X |
+| void searchIncomeResultScene(char* searchData) | 수입내역 검색결과 보여주기 UI 화면 출력 | 검색된 내역(char*) | X |
 | void searchSpendScene(void) | 지출내역 검색요소 선택 UI 화면 출력 | X | X |
-| void searchSpendResultScene(char* searchData) | 지출내역 검색결과 보여주기 UI 화면 출력 | 검색된 내역(char) | X |
+| void searchSpendResultScene(char* searchData) | 지출내역 검색결과 보여주기 UI 화면 출력 | 검색된 내역(char*) | X |
 | void setupSpendLimitScene(void) | 지출 한도 설정 UI 화면 출력 | X | X |
 | void WarningScene(int height) | 입력 오류 경고창 UI 화면 출력 | 알려줄 프롬프트 높이(int) | X |
 | void ExitScene(void) | 프로그램 종료 UI 화면 출력 | X | X |
-
-
 <hr>
 
+* **prompt.h (front + back)**
+        
+| 함수(Function) | 역할(UI + Task) | 인수(Argument) | 출력 값(Return Value) |
+|:--------------:|:---------:|:-------------:|:--------------------:|
+| char selectMainMenu(void) | 메인메뉴 선택창 (0) | X | (수입, 지출, 검색)메뉴 선택 값(char) |
+| char selectIncomeMenu(void) | 수입메뉴 선택창 (1) | X | (내역 추가/출력)메뉴 선택 값(char) |
+| char selectSpendMenu(void) | 지출메뉴 선택창 (2) | X | (내역 추가/출력, 한도액 설정, 예약내역 추가)메뉴 선택 값(char) |
+| char selectSearchMenu(void) | 검색메뉴 선택창 (3) | X | (수입/지출 내역 날짜/카테고리 검색)메뉴 선택 값(char) |
+| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | X |
+| void plusSpendList(void) | 지출내역 추가 (2-1) | X | X |
+| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | X |
+| void showIncomeList(void) | 수입내역 출력 (1-2) | X | X |
+| void showSpendList(void) | 지출내역 출력 (2-2) | X | X |
+| void showSpendPromiseList(void) | 지출 예약내역 출력 | X | X |
+| void findIncomeList(void) | 수입내역 검색 및 출력 (날짜/카테고리, 3-1) | X | X |
+| void findSpendList(void) | 지출내역 검색 및 출력 (날짜/카테고리, 3-2) | X | X |
+| void updateSpendLimit(void) | 지출한도 금액 설정 (2-3) | X | X |
+<hr>
 
 
 
