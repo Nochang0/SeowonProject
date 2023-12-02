@@ -384,17 +384,17 @@ void ExitScene(void) {
     disappearText("Thank You For Playing!");
     Clear();
     
-    printf("╔═══════════════════════════════════════════════════╗\n");
+	printf("╔═══════════════════════════════════════════════════╗\n");
 	printf("●        📝 가계부 관리 프로그램 By 5팀		  ●\n");
     printf("╠═══════════════════════════════════════════════════╣\n");
 	printf("║                    팀 구성원                      ║\n");
-	printf("║  ·" LIGHT_CYAN "연승현 (202311420)" WHITE "   ╦   ·" LIGHT_CYAN "김지성 (202110343)" WHITE "    ║\n");
-	printf("║  ·" LIGHT_CYAN "정희태 (202011474)" WHITE "   ║   ·" LIGHT_CYAN "양혜성 (202311419)" WHITE "    ║\n");
-	printf("║  ·" LIGHT_CYAN "이호현 (202311437)" WHITE "   ║   ·" LIGHT_CYAN "이정호 (203311431)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_GREEN "연승현 (202311420)" WHITE "   ╦   ·" LIGHT_CYAN "김지성 (202110343)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_GREEN "정희태 (202011474)" WHITE "   ║   ·" LIGHT_CYAN "양혜성 (202311419)" WHITE "    ║\n");
+	printf("║  ·" LIGHT_GREEN "이호현 (202311437)" WHITE "   ║   ·" LIGHT_CYAN "이정호 (203311431)" WHITE "    ║\n");
 	printf("║  ·" LIGHT_CYAN "김예은 (202010319)" WHITE "   ║   ·" LIGHT_CYAN "장서진 (202311825)" WHITE "    ║\n");
 	printf("║  ·" LIGHT_CYAN "홍정일 (202311447)" WHITE "   ║                          ║\n");
 	printf("╠════════════════════════╩══════════════════════════╣\n");
-	printf("║ Github: " LIGHT_GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
+	printf("║ Github: " GREEN "https://github.com/Nochang0/SeowonProject" WHITE " ║\n");
     printf("╚═══════════════════════════════════════════════════╝\n");
     
     exit(0);	// 시스템 종료

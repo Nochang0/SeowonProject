@@ -278,7 +278,7 @@
 * **prompt.h (front + back)**
         
 | 함수(Function) | 역할(UI + Task) | 인수(Argument) | 출력 값(Return Value) |
-|:--------------:|:---------:|:-------------:|:--------------------:|
+|:--------------:|:--------------:|:-------------:|:--------------------:|
 | char selectMainMenu(void) | 메인메뉴 선택창 (0) | X | (수입:1, 지출:2, 검색:3, 종료:q) 메뉴 선택 값(char) |
 | char selectIncomeMenu(void) | 수입메뉴 선택창 (1) | X | (내역 추가:1/출력:2, 종료:q) 메뉴 선택 값(char) |
 | char selectSpendMenu(void) | 지출메뉴 선택창 (2) | X | (내역 추가:1/출력:2, 한도액 설정:3, 예약내역 추가:4, 종료:q) 메뉴 선택 값(char) |
@@ -303,13 +303,33 @@
 | void gotoxy(int x, int y) | 터미널의 좌표위치(x, y)에서 입력(printf, scanf 등) 시작 | 가로 위치(int), 세로 위치(int) | X |
 | void LoadSpin(int totalSpeed, char* plusText) | 움직이는 로딩 효과 UI | 지속 값(int), 추가 텍스트(char*) | X |
 | bool isArray(char value, char array[]) | 원소가 배열에 속하는 지 확인 | 검색할 원소(char), 확인할 배열(char[]) | 성공 여부(bool) |
-| void disappearText(char* text) | 터미널에서 텍스트의 사라짐 효과 (종료 UI 함수 전용) | 표시할 텍스트(char*) | X |
+| void disappearText(char* text) | 터미널에서 텍스트의 사라짐 효과 UI (종료 UI 함수 전용) | 표시할 텍스트(char*) | X |
 
+## 📥 실행 및 설치
 
-
-
+* **설치**
+    * **Package Update & Upgrade**
+    	```
+        sudo apt update && sudo apt upgrade
         
+        ```
+    * **json-c**
+    	```
+        sudo apt install libjson-c-dev
+        ```
+* **실행**
+    * **main.c 실행**
+    	```
+        // 실행할 디렉토리로 이동
+        cd 실행할_디렉토리_이동/
         
+        // main.c 컴파일
+        gcc ./main.c -o /main.out -lm -ljson-c -lncurses
+        
+        // 실행
+        /main.out
+        ```
+
 ## 🔧 IDE WorkSpace Tip & Guide
 
 * Command feature
