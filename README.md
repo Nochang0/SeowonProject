@@ -249,6 +249,39 @@
 | struct ShowInfo findTag(char* jsonData, char* actList, char* targetTag) | 수입 및 지출 카테고리 검색결과 반환 | 수입/지출 내역(char), 내역이름(char), 검색 카테고리(char) | 검색된 내역(char) |
 | struct ShowInfo findDate(char* jsonData, char* actList, char* targetDate) | 수입 및 지출 날짜 검색결과 반환 | 수입/지출 내역(char), 내역이름(char), 검색 날짜(char) | 검색된 내역(char) |
 
+<hr>
+
+* **ui.h**
+        
+| 함수(Function) | 역할(Role) | 인수(Argument) | 출력 값(Return Value) |
+|:--------------:|:---------:|:-------------:|:--------------------:|
+| void Splash_Screen(void) | 시작 스플래시 이미지 출력 | X | X |
+
+| void mainMenuScene(void) | 메인 메뉴 UI 화면 출력 | X | X |
+| void incomeMenuScene(void) | 수입 메뉴 UI 화면 출력 | X | X |
+| void spendMenuScene(void) | 지출 메뉴 UI 화면 출력 | X | X |
+| void searchMenuScene(void) | 검색 메뉴 UI 화면 출력 | X | X |
+
+| void plusIncomeScene(void) | 수입내역 추가 UI 화면 출력 | X | X |
+| void plusSpendScene(void) | 지출내역 추가 UI 화면 출력 | X | X |
+| void plusSpendPromiseScene(void) | 지출 예약내역 추가 UI 화면 출력 | X | X |
+
+| void lookIncomeScene(char* listData) | 수입내역 전체보기 UI 화면 | X | X |
+| void lookSpendScene(char* listData) | 지출내역 전체보기 UI 화면 | X | X |
+| void lookSpendPromiseScene(char* listData) | 지출 예약내역 전체보기 UI 화면 | X | X |
+
+| void searchIncomeScene(void) | 수입내역 검색요소 선택 UI 화면 | X | X |
+| void searchIncomeResultScene(void) | 수입내역 검색결과 보여주기 UI 화면 | X | X |
+
+| void searchSpendScene(void) | 지출내역 검색요소 선택 UI 화면 | X | X |
+| void searchSpendResultScene(void) | 지출내역 검색결과 보여주기 UI 화면 | X | X |
+
+| void setupSpendLimitScene(void) | 지출 한도 설정 UI 화면 | X | X |
+| void WarningScene(void) | 입력 오류 경고창 UI 화면 | X | X |
+| void ExitScene(void) | 프로그램 종료 UI 화면 | X | X |
+<hr>
+
+
 
 
 

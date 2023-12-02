@@ -48,7 +48,7 @@ void searchIncomeScene(void);                   // 수입내역 검색요소 선
 void searchIncomeResultScene(char* searchData); // 수입내역 검색결과 보여주기 UI 화면
 
 void searchSpendScene(void);                    // 지출내역 검색요소 선택 UI 화면
-void searchSpendResultScene(char* searchData);  // 지출내역 검색요소 선택 UI 화면
+void searchSpendResultScene(char* searchData);  // 지출내역 검색결과 보여주기 UI 화면
     
 // 나가기 및 경고 UI 화면
 void WarningScene(int height);                  // 입력 오류 경고창 UI 화면
