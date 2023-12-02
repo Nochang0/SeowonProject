@@ -311,7 +311,6 @@
     * **Package Update & Upgrade**
     	```
         sudo apt update && sudo apt upgrade
-        
         ```
     * **json-c**
     	```
@@ -320,19 +319,19 @@
 * **실행**
     * **main.c 실행**
     	* 실행할 디렉토리로 이동
-        ```
-        cd 디렉토리/
-        ```
+            ```
+            cd 디렉토리/
+            ```
         
     	* main.c 컴파일
-        ```
-        gcc ./main.c -o /main.out -lm -ljson-c -lncurses
-        ```
+            ```
+            gcc ./main.c -o /main.out -lm -ljson-c -lncurses
+            ```
         
         * 실행
-        ```
-        /main.out
-        ```
+            ```
+            /main.out
+            ```
 
 ## 🔧 IDE WorkSpace Tip & Guide
 
