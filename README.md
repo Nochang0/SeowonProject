@@ -261,24 +261,25 @@
 | void incomeMenuScene(void) | 수입 메뉴 UI 화면 출력 | X | X |
 | void spendMenuScene(void) | 지출 메뉴 UI 화면 출력 | X | X |
 | void searchMenuScene(void) | 검색 메뉴 UI 화면 출력 | X | X |
-
 | void plusIncomeScene(void) | 수입내역 추가 UI 화면 출력 | X | X |
 | void plusSpendScene(void) | 지출내역 추가 UI 화면 출력 | X | X |
 | void plusSpendPromiseScene(void) | 지출 예약내역 추가 UI 화면 출력 | X | X |
 
-| void lookIncomeScene(char* listData) | 수입내역 전체보기 UI 화면 | X | X |
-| void lookSpendScene(char* listData) | 지출내역 전체보기 UI 화면 | X | X |
-| void lookSpendPromiseScene(char* listData) | 지출 예약내역 전체보기 UI 화면 | X | X |
+| void lookIncomeScene(char* listData) | 수입내역 전체보기 UI 화면 출력 | X | X |
+| void lookSpendScene(char* listData) | 지출내역 전체보기 UI 화면 출력 | X | X |
+| void lookSpendPromiseScene(char* listData) | 지출 예약내역 전체보기 UI 화면 출력 | X | X |
 
-| void searchIncomeScene(void) | 수입내역 검색요소 선택 UI 화면 | X | X |
-| void searchIncomeResultScene(void) | 수입내역 검색결과 보여주기 UI 화면 | X | X |
+| void searchIncomeScene(void) | 수입내역 검색요소 선택 UI 화면 출력 | X | X |
+| void searchIncomeResultScene(void) | 수입내역 검색결과 보여주기 UI 화면 출력 | X | X |
 
-| void searchSpendScene(void) | 지출내역 검색요소 선택 UI 화면 | X | X |
-| void searchSpendResultScene(void) | 지출내역 검색결과 보여주기 UI 화면 | X | X |
+| void searchSpendScene(void) | 지출내역 검색요소 선택 UI 화면 출력 | X | X |
+| void searchSpendResultScene(void) | 지출내역 검색결과 보여주기 UI 화면 출력 | X | X |
 
-| void setupSpendLimitScene(void) | 지출 한도 설정 UI 화면 | X | X |
-| void WarningScene(void) | 입력 오류 경고창 UI 화면 | X | X |
-| void ExitScene(void) | 프로그램 종료 UI 화면 | X | X |
+| void setupSpendLimitScene(void) | 지출 한도 설정 UI 화면 출력 | X | X |
+| void WarningScene(void) | 입력 오류 경고창 UI 화면 출력 | X | X |
+| void ExitScene(void) | 프로그램 종료 UI 화면 출력 | X | X |
+
+
 <hr>
 
 
