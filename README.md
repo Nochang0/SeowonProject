@@ -283,7 +283,7 @@
 | char selectIncomeMenu(void) | 수입메뉴 선택창 (1) | X | (내역 추가/출력)메뉴 선택 값(char) |
 | char selectSpendMenu(void) | 지출메뉴 선택창 (2) | X | (내역 추가/출력, 한도액 설정, 예약내역 추가)메뉴 선택 값(char) |
 | char selectSearchMenu(void) | 검색메뉴 선택창 (3) | X | (수입/지출 내역 날짜/카테고리 검색)메뉴 선택 값(char) |
-| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
+| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | (뒤로가기(수입메뉴), 종료)메뉴 선택 값(char) |
 | void plusSpendList(void) | 지출내역 추가 (2-1) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
 | void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
 | void showIncomeList(void) | 수입내역 출력 (1-2) | X | (뒤로가기, 종료)메뉴 선택 값(char) |
