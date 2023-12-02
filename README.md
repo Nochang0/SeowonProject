@@ -308,11 +308,11 @@
 ## 📥 실행 및 설치
 
 * **설치**
-    * **Package Update & Upgrade**
+    * Package Update & Upgrade
     	```
         sudo apt update && sudo apt upgrade
         ```
-    * **json-c**
+    * json-c
     	```
         sudo apt install libjson-c-dev
         ```
