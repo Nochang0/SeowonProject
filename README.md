@@ -285,7 +285,7 @@
 | char selectSearchMenu(void) | 검색메뉴 선택창 (3) | X | (수입/지출 내역 날짜:1/카테고리:2 검색, 종료:q)메뉴 선택 값(char) |
 | void plusIncomeList(void) | 수입내역 추가 (1-1) | X | (뒤로가기:z(수입메뉴), 종료:q)메뉴 선택 값(char) |
 | void plusSpendList(void) | 지출내역 추가 (2-1) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
+| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | (뒤로가기:z, 종료:q)\n메뉴 선택 값(char) |
 | void showIncomeList(void) | 수입내역 출력 (1-2) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
 | void showSpendList(void) | 지출내역 출력 (2-2) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
 | void showSpendPromiseList(void) | 지출 예약내역 출력 | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
