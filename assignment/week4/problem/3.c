@@ -1,14 +1,16 @@
 /*
 * 프로그램 내용: 4주차 팀별과제 3번
 * 개발자: 이정호(202311431)
-* 문제: 파일로 부터 성적 점수를 읽은다음, 점수를 내림차순으로 정렬하여 순위(등수) 를 출력하고 만약 같은 점수가 있게된다면 같은 등수로 표가합니다.그리고 다음 점수의 순위는 같은 순위의 사람수를 고려해서 계산합니다
+* 문제: 파일로 부터 성적 점수를 읽은다음, 점수를 내림차순으로 정렬하여 순위(등수) 를 출력하고 
+만약 같은 점수가 있게된다면 같은 등수로 표가합니다.
+그리고 다음 점수의 순위는 같은 순위의 사람수를 고려해서 계산합니다
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef struct {
-    char name[100]; // 이름
+    char name[100]; 
     int score;      // 성적 점수
     int rank;       // 등수
 } Student;
@@ -33,7 +35,7 @@ int main() {
     Student students[100];   // 최대 100명의 학생
     int numStudents = 0;
 
-    file = fopen("./file/scores.txt", "r");   // 파일 열기
+    file = fopen("scores.txt", "r");   // 파일 열기
     if (file == NULL) {
         printf("파일을 열 수 없습니다.");   // 파일을 열수 없을때 출력
         return 1;

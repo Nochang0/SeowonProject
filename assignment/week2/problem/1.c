@@ -5,7 +5,7 @@
 */
 
 #include <stdio.h>
-#include <locale.h>
+#include <locale.h> // setlocale을 쓸 수 있게 만드는 전처리기
 #include <math.h>
 
 

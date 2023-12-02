@@ -27,7 +27,7 @@ int main(void)
 
    num4 = decimal % 2;
    
-   printf("2진수 : %d%d%d%d", num1, num2, num3, num4);
+   printf("2진수 : %d%d%d%d", num4, num3, num2, num1);
 
    return 0;
 }

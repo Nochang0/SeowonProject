@@ -18,13 +18,13 @@ enum Shapetype {
 // 공용체를 사용하여 도형의 데이터를 저장
 union Shapedata {
     struct {
-        double base;
-        double height;
+        double base; // 변
+        double height; //높이
     } triangle;
 
     struct {
-        double width;
-        double height;
+        double width; //너비
+        double height; //높이
     } rectangle;
 
     struct {
@@ -34,8 +34,8 @@ union Shapedata {
 
 // 구조체를 사용하여 도형을 표현
 struct Shape {
-    enum Shapetype type;
-    union Shapedata data;
+    enum Shapetype type; // 도형의 종류
+    union Shapedata data; //도형의 변 너비 높이 반지름을 측정
 };
 
 // 도형의 면적을 계산하는 함수
