@@ -279,19 +279,19 @@
         
 | 함수(Function) | 역할(UI + Task) | 인수(Argument) | 출력 값(Return Value) |
 |:--------------:|:---------:|:-------------:|:--------------------:|
-| char selectMainMenu(void) | 메인메뉴 선택창 (0) | X | (수입:1, 지출:2, 검색:3, 종료:q)메뉴 선택 값(char) |
-| char selectIncomeMenu(void) | 수입메뉴 선택창 (1) | X | (내역 추가:1/출력:2, 종료:q)메뉴 선택 값(char) |
-| char selectSpendMenu(void) | 지출메뉴 선택창 (2) | X | (내역 추가:1/출력:2, 한도액 설정:3, 예약내역 추가:4, 종료:q)메뉴 선택 값(char) |
-| char selectSearchMenu(void) | 검색메뉴 선택창 (3) | X | (수입/지출 내역 날짜:1/카테고리:2 검색, 종료:q)메뉴 선택 값(char) |
-| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | (뒤로가기:z(수입메뉴), 종료:q)메뉴 선택 값(char) |
-| void plusSpendList(void) | 지출내역 추가 (2-1) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void showIncomeList(void) | 수입내역 출력 (1-2) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void showSpendList(void) | 지출내역 출력 (2-2) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void showSpendPromiseList(void) | 지출 예약내역 출력 | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void findIncomeList(void) | 수입내역 검색 및 출력 (날짜/카테고리, 3-1) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void findSpendList(void) | 지출내역 검색 및 출력 (날짜/카테고리, 3-2) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
-| void updateSpendLimit(void) | 지출한도 금액 설정 (2-3) | X | (뒤로가기:z, 종료:q)메뉴 선택 값(char) |
+| char selectMainMenu(void) | 메인메뉴 선택창 (0) | X | (수입:1, 지출:2, 검색:3, 종료:q) 메뉴 선택 값(char) |
+| char selectIncomeMenu(void) | 수입메뉴 선택창 (1) | X | (내역 추가:1/출력:2, 종료:q) 메뉴 선택 값(char) |
+| char selectSpendMenu(void) | 지출메뉴 선택창 (2) | X | (내역 추가:1/출력:2, 한도액 설정:3, 예약내역 추가:4, 종료:q) 메뉴 선택 값(char) |
+| char selectSearchMenu(void) | 검색메뉴 선택창 (3) | X | (수입/지출 내역 날짜:1/카테고리:2 검색, 종료:q) 메뉴 선택 값(char) |
+| void plusIncomeList(void) | 수입내역 추가 (1-1) | X | (뒤로가기:z(수입메뉴), 종료:q) 메뉴 선택 값(char) |
+| void plusSpendList(void) | 지출내역 추가 (2-1) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void plusSpendPromiseList(void) | 지출 예약내역 추가 (2-4) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void showIncomeList(void) | 수입내역 출력 (1-2) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void showSpendList(void) | 지출내역 출력 (2-2) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void showSpendPromiseList(void) | 지출 예약내역 출력 | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void findIncomeList(void) | 수입내역 검색 및 출력 (날짜/카테고리, 3-1) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void findSpendList(void) | 지출내역 검색 및 출력 (날짜/카테고리, 3-2) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
+| void updateSpendLimit(void) | 지출한도 금액 설정 (2-3) | X | (뒤로가기:z, 종료:q) 메뉴 선택 값(char) |
 <hr>
 
 
