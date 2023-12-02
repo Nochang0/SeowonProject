@@ -319,15 +319,18 @@
         ```
 * **실행**
     * **main.c 실행**
-    	```markdown
-
-        // 실행할 디렉토리로 이동
-        cd 실행할_디렉토리_이동/
+    	* 실행할 디렉토리로 이동
+        ```
+        cd 디렉토리/
+        ```
         
-        // main.c 컴파일
+    	* main.c 컴파일
+        ```
         gcc ./main.c -o /main.out -lm -ljson-c -lncurses
+        ```
         
-        // 실행
+        * 실행
+        ```
         /main.out
         ```
 
