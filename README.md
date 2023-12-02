@@ -295,6 +295,16 @@
 <hr>
 
 
+* **util.h (front / back)**
+        
+| 함수(Function) | 역할(UI + Task) | 인수(Argument) | 출력 값(Return Value) |
+|:--------------:|:---------:|:-------------:|:--------------------:|
+| void Clear(void) | 터미널 텍스트 청소 | X | X |
+| void gotoxy(int x, int y) | 터미널의 좌표위치(x, y)에서 입력(printf, scanf 등) 시작 | 가로 위치(int), 세로 위치(int) | X |
+| void LoadSpin(int totalSpeed, char* plusText) | 움직이는 로딩 효과 UI | 지속 값(int), 추가 텍스트(char*) | X |
+| bool isArray(char value, char array[]) | 원소가 배열에 속하는 지 확인 | 검색할 원소(char), 확인할 배열(char[]) | 성공 여부(bool) |
+| void disappearText(char* text) | 터미널에서 텍스트의 사라짐 효과 (종료 UI 함수 전용) | 표시할 텍스트(char*) | X |
+
 
 
 
