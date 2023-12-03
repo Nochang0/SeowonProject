@@ -313,11 +313,11 @@
 ## 📥 실행 및 설치
 
 * **설치**
-    * Package Update & Upgrade
+    * **Package Update & Upgrade**
     	```
         sudo apt update && sudo apt upgrade
         ```
-    * json-c
+    * **json-c**
     	```
         sudo apt install libjson-c-dev
         ```
@@ -339,7 +339,7 @@
         /main.out
         ```
 
-## Schema
+## 🧱 Schema
 
 * **내역 추가 데이터 구조체 (struct InputInfo)**
 
@@ -356,7 +356,7 @@
 
 	```C
     struct ShowInfo {
-        int listHeight;     // 입력바 삽입 높이
+        int listHeight;     // 입력바 삽입 높이 (UI)
         char* listData;     // 내역 데이터
     };
     ```

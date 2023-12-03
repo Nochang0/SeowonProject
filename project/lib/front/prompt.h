@@ -739,4 +739,33 @@ static void allInputScene() {
     printf(WHITE);
 }
 
+// 다음 경로 이동 (뒤로가기:z, 종료:q)
+static char getMove(int height) {
+    char moveNum;
+    
+    // 이동 기호 입력 받기
+    gotoxy(11, height);
+    printf(LIGHT_GREEN);
+    getchar();
+    scanf("%c", &moveNum);
+    
+    while (1) {
+        // 선택지를 잘 골랐을 경우
+        if (isArray(moveNum, menuArr)) {
+            loadScene(height);
+            return moveNum;
+        } else {
+            WarningScene(height+2);
+            gotoxy(eraseWidth, height);
+            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
+            gotoxy(1, height);
+            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
+            while (getchar() != '\n');
+    
+            scanf("%c", &moveNum);
+            continue;
+        }
+    }
+}
+
 #endif // PROMPT_H
