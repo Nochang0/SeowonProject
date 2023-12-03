@@ -339,6 +339,29 @@
         /main.out
         ```
 
+## Schema
+
+* **내역 추가 데이터 구조체 (struct InputInfo)**
+
+    ```C
+    struct InputInfo {
+        char Date[100];     // 날짜
+        char Amount[100];   // 금액
+        char Source[100];   // 수입처|지출처
+        char Memo[100];     // 메모글
+        char Tag[100];      // 카테고리
+    };
+    ```
+* **내역 출력 UI 관련 구조체 (struct ShowInfo)**
+
+	```C
+    struct ShowInfo {
+        int listHeight;     // 입력바 삽입 높이
+        char* listData;     // 내역 데이터
+    };
+    ```
+
+
 ## 🔧 IDE WorkSpace Tip & Guide
 
 * Command feature
