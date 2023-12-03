@@ -9,7 +9,7 @@
 
 void getDate(char Social_num[14], int* Now_year, int* Now_month, int* Now_day);	// 현재 날짜 출력 및 저장
 void birthday(char Social_num[14], int* year, int* month, int* day);			// 생년월일 출력 및 저장
-void zodiac(int birth);															// 별자리 출력
+void zodiac(int birth);															// 동물 띠 출력
 
 
 int main(void) {
@@ -33,11 +33,11 @@ int main(void) {
 	birthday(Social_num, &Birth_year, &Birth_month, &Birth_day);
 	
 	// 성별 출력 및 선언
-	// 뒷번호 시작이 1 또는 3이면 남자 아니면 여자
+	// 주민등록 뒷번호 시작이 1 또는 3이면 남자 아니면 여자
     char* gender = (Social_num[6] == '1' || Social_num[6] == '3') ? "남자" : "여자";
 	printf("성별: %s\n", gender);
 	
-	// 별자리 출력 (공식: 생일년도 % 12 = 나머지로 따짐)
+	// 동물 띠 출력 (공식: 생일년도 % 12 = 나머지로 따짐)
 	zodiac(Birth_year);
     
 	// 만나이 출력
@@ -94,9 +94,9 @@ void getDate(char Social_num[14], int* Now_year, int* Now_month, int* Now_day) {
     struct tm timeInfo = *localtime(&t);	// 우리나라 로컬 시간대로 변환후 tm 구조체로 저장
 	
 	// 현재 년월일 선언
-    *Now_year = timeInfo.tm_year + 1900;
-	*Now_month = timeInfo.tm_mon + 1;
-	*Now_day = timeInfo.tm_mday;
+    *Now_year = timeInfo.tm_year + 1900;	// 년도
+	*Now_month = timeInfo.tm_mon + 1;		// 월
+	*Now_day = timeInfo.tm_mday;			// 일
 	
     printf("\n현재 연월일: %04d년 %02d월 %02d일\n", *Now_year, *Now_month, *Now_day);
 }
