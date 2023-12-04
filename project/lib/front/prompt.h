@@ -474,11 +474,11 @@ char findIncomeList(void) {
     char searchArr[] = { '1', '2' };    // 검색 요소 배열 (날짜, 테그)
     char* word = malloc(100);           // 검색어
     
-    // 수입 내역 데이터 불러오기
-    char* jsonData = loadFile(INCOME_FILE_PATH);
-    
     // 수입 검색 요소 선택 UI 화면
     searchIncomeScene();
+    
+    // 수입 내역 데이터 불러오기
+    char* jsonData = loadFile(INCOME_FILE_PATH);
     
     // 검색 요소 입력받기
     gotoxy(21, 6);
@@ -517,13 +517,13 @@ char findSpendList(void) {
     char moveNum, choose;               // 이동 기호 입력, 검색 요소
     char menuArr[] = { 'z', 'q' };      // 입력 값 배열
     char searchArr[] = { '1', '2' };    // 검색 요소 배열 (날짜, 테그)
-    char* word = malloc(100);                         // 검색어
-    
-    // 지출 내역 데이터 불러오기
-    char* jsonData = loadFile(SPEND_FILE_PATH);
+    char* word = malloc(100);           // 검색어
     
     // 지출 검색 요소 선택 UI 화면
     searchSpendScene();
+    
+    // 지출 내역 데이터 불러오기
+    char* jsonData = loadFile(SPEND_FILE_PATH);
     
     // 검색 요소 입력받기
     gotoxy(21, 6);

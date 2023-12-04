@@ -36,6 +36,7 @@
 	* **개발 환경:** `Visual Studio Code (Windows 10), GoormIDE (Ubuntu 18.04.6)`
     * **프로젝트 주제:** `가계부 관리 프로그램`
 	* **Programming Language:** ![C](https://img.shields.io/badge/-C-00599C?style=flat&logo=C&logoColor=white)
+    * **팀 이름: 플랜트**
 	* **팀 구성**
 		 * **팀장(1):** `연승현(202311420)`
   		 * **부팀장(2):** `정희태(202011474), 이호현(202311437)`
