@@ -23,7 +23,8 @@ static bool clearChar = false;      // 메인메뉴 개행문자('\n') 제거 �
 // UI 효과 관련 함수 (Util)
 static void loadScene(int height);  // 입력 엔터 후 로딩 효과
 static void allInputScene(void);    // 내역추가 관련 저장 알림 효과 (plus~ 함수)
-
+static char getMove(int height, char* menuArr); // 다음 경로 이동 (뒤로가기:z, 종료:q)
+    
 // RETURN: 화면 전환 기호(char)
 // 메뉴 선택 함수
 char selectMainMenu(void);          // 0: 메인메뉴 선택창
@@ -420,28 +421,7 @@ char showIncomeList(void) {
     int ShowHeight = Incomedata.listHeight*7+8;
     
     // 이동 기호 입력 받기
-    gotoxy(11, ShowHeight);
-    printf(LIGHT_GREEN);
-    getchar();
-    scanf("%c", &moveNum);
-    
-    while (1) {
-        // 선택지를 잘 골랐을 경우
-        if (isArray(moveNum, menuArr)) {
-            loadScene(ShowHeight);
-            return moveNum;
-        } else {
-            WarningScene(ShowHeight+2);
-            gotoxy(eraseWidth, ShowHeight);
-            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
-            gotoxy(1, ShowHeight);
-            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
-            while (getchar() != '\n');
-    
-            scanf("%c", &moveNum);
-            continue;
-        }
-    }
+    moveNum = getMove(ShowHeight, menuArr);
     return moveNum;
 }
 
@@ -461,28 +441,7 @@ char showSpendList(void) {
     int ShowHeight = Spenddata.listHeight*7+8;
     
     // 이동 기호 입력 받기
-    gotoxy(11, ShowHeight);
-    printf(LIGHT_GREEN);
-    getchar();
-    scanf("%c", &moveNum);
-    
-    while (1) {
-        // 선택지를 잘 골랐을 경우
-        if (isArray(moveNum, menuArr)) {
-            loadScene(ShowHeight);
-            return moveNum;
-        } else {
-            WarningScene(ShowHeight+2);
-            gotoxy(eraseWidth, ShowHeight);
-            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
-            gotoxy(1, ShowHeight);
-            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
-            while (getchar() != '\n');
-    
-            scanf("%c", &moveNum);
-            continue;
-        }
-    }
+    moveNum = getMove(ShowHeight, menuArr);
     return moveNum;
 }
 
@@ -502,28 +461,7 @@ char showSpendPromiseList(void) {
     int ShowHeight = SpendPromisedata.listHeight*7+8;
     
     // 이동 기호 입력 받기
-    gotoxy(11, ShowHeight);
-    printf(LIGHT_GREEN);
-    getchar();
-    scanf("%c", &moveNum);
-    
-    while (1) {
-        // 선택지를 잘 골랐을 경우
-        if (isArray(moveNum, menuArr)) {
-            loadScene(ShowHeight);
-            return moveNum;
-        } else {
-            WarningScene(ShowHeight+2);
-            gotoxy(eraseWidth, ShowHeight);
-            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
-            gotoxy(1, ShowHeight);
-            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
-            while (getchar() != '\n');
-    
-            scanf("%c", &moveNum);
-            continue;
-        }
-    }
+    moveNum = getMove(ShowHeight, menuArr);
     return moveNum;
 }
 
@@ -570,28 +508,7 @@ char findIncomeList(void) {
     int FindHeight = fineResult.listHeight*7+8;
     
     // 이동 기호 입력 받기
-    gotoxy(11, FindHeight);
-    printf(LIGHT_GREEN);
-    getchar();
-    scanf("%c", &moveNum);
-    
-    while (1) {
-        // 선택지를 잘 골랐을 경우
-        if (isArray(moveNum, menuArr)) {
-            loadScene(FindHeight);
-            return moveNum;
-        } else {
-            WarningScene(FindHeight+2);
-            gotoxy(eraseWidth, FindHeight);
-            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
-            gotoxy(1, FindHeight);
-            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
-            while (getchar() != '\n');
-    
-            scanf("%c", &moveNum);
-            continue;
-        }
-    }
+    moveNum = getMove(FindHeight, menuArr);
     return moveNum;
 }
 
@@ -636,28 +553,7 @@ char findSpendList(void) {
     int FindHeight = fineResult.listHeight*7+8;
     
     // 이동 기호 입력 받기
-    gotoxy(11, FindHeight);
-    printf(LIGHT_GREEN);
-    getchar();
-    scanf("%c", &moveNum);
-    
-    while (1) {
-        // 선택지를 잘 골랐을 경우
-        if (isArray(moveNum, menuArr)) {
-            loadScene(FindHeight);
-            return moveNum;
-        } else {
-            WarningScene(FindHeight+2);
-            gotoxy(eraseWidth, FindHeight);
-            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
-            gotoxy(1, FindHeight);
-            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
-            while (getchar() != '\n');
-    
-            scanf("%c", &moveNum);
-            continue;
-        }
-    }
+    moveNum = getMove(FindHeight, menuArr);
     return moveNum;
 }
 
@@ -682,28 +578,7 @@ char updateSpendLimit(void) {
     setSpendLimit(limit);
     
     // 이동 기호 입력 받기
-    gotoxy(11, 9);
-    printf(LIGHT_GREEN);
-    getchar();
-    scanf("%c", &moveNum);
-    
-    while (1) {
-        // 선택지를 잘 골랐을 경우
-        if (isArray(moveNum, menuArr)) {
-            loadScene(9);
-            return moveNum;
-        } else {
-            WarningScene(9+2);
-            gotoxy(eraseWidth, 9);
-            printf("\033[1K");		// 현재 위치에서 줄의 시작까지 지움
-            gotoxy(1, 9);
-            printf(WHITE "║ ▶️ 입력: " LIGHT_GREEN);
-            while (getchar() != '\n');
-    
-            scanf("%c", &moveNum);
-            continue;
-        }
-    }
+    moveNum = getMove(9, menuArr);
     return moveNum;
 }
 
@@ -740,7 +615,8 @@ static void allInputScene() {
 }
 
 // 다음 경로 이동 (뒤로가기:z, 종료:q)
-static char getMove(int height) {
+static char getMove(int height, char* menuArr) {
+    // 이동 기호 받는 변수
     char moveNum;
     
     // 이동 기호 입력 받기
