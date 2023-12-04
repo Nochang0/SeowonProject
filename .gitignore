@@ -1,5 +1,6 @@
 memo.txt
-./test.c
+test.c
+goorm.manifest
 ./project/test.c
 ./project/test2.c
 ./project/test3.c
