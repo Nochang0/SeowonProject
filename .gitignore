@@ -1,6 +1,6 @@
 ./memo.txt
 ./test.c
-./project/lib/test.c
-./project/lib/test2.c
-./project/lib/test3.c
-./project/lib/test4.c
+./project/test.c
+./project/test2.c
+./project/test3.c
+./project/test4.c
