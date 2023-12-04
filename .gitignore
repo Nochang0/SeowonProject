@@ -1,7 +1,7 @@
 memo.txt
 test.c
 goorm.manifest
-./project/test.c
-./project/test2.c
-./project/test3.c
-./project/test4.c
+project/test.c
+project/test2.c
+project/test3.c
+project/test4.c
