@@ -136,3 +136,5 @@ static void Move(int menuNum, char moveNum) {
 
 
 // cd /workspace/SeowonCProject/project/ && gcc ./main.c -o /tmp/a.out -lm -ljson-c -lncurses && clear && /tmp/a.out
+
+// 수정 명령어 >> gcc ./main.c -o ./start.out -lm -ljson-c -lncurses && clear && chmod +x ./start.out && ./start.out
